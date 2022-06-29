@@ -23,12 +23,12 @@ get '/contacts' do
   end
 
 	post '/visit' do
-  		@username = params[:username]
-		@phone = params[:phone]
-		@modelauto = params[:modelauto]
-		@datetime = params[datetime]
+  	@username 	= params[:username]
+		@phone 			= params[:phone]
+		@modelauto 	= params[:modelauto]
+		@date_time 	= params[:date_time]
 
 		@title = 'Большое спасибо'
-		@message = "Дорогой #{@username}, мы будем рады вас видеть #{@datatime}"
-
+		@message = "Дорогой #{@username}, мы будем рады вас видеть #{@date_time}"
+		erb :message
 	end
