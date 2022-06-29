@@ -8,8 +8,7 @@
     <input name="number_auto" type="text" class="form-control" placeholder="Гос. Номер а/м">
     </div>
 
-
-<div class="col-md-3 position-relative">
+    <div class="col-md-3 position-relative">
     <label>Введите бренд а/м</label>
     <input name="auto" type="text" class="form-control" placeholder="Бренд а/м">
     </div>
@@ -19,24 +18,25 @@
     <input name="model_auto" type="text" class="form-control" placeholder="Модель а/м">
     </div>
 
-<button type="submit" class="btn btn-primary">Записаться</button>
+    <div class="col-md-3 position-relative">
+    <label>Введите пробег а/м в км.</label>
+    <input name="model_auto" type="text" class="form-control" placeholder="Пробег км.">
+    </div>
+
 
   <div class="mb-3">
-    <select class="form-select" required aria-label="select example">
-      <option value="">Выберите бренд а/м</option>
-      <option value="1">AUDI</option>
-      <option value="2">BMW</option>
-      <option value="3">CITROEN</option>
-    </select>
-  </div>
-
-
- <div class="mb-3">
     <label>Введите неисправности а/м на которые жалуется владелец</label>
     <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Required example textarea" required></textarea>
     <div class="invalid-feedback">
       Please enter a message in the textarea.
     </div>
   </div>
+
+    <div class="col-md-3 position-relative">
+        <label>Запишите тип контроллера</label>
+        <input name="ecu" type="text" class="form-control" placeholder="Eсu number">
+    </div>
+
+  <button type="submit" class="btn btn-primary">Ввод</button>
 
 </form>
