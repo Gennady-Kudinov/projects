@@ -30,5 +30,9 @@ get '/contacts' do
 
 		@title = 'Большое спасибо'
 		@message = "Дорогой #{@username}, мы будем рады вас видеть #{@date_time}"
+
+		f = File.open 'users.txt', 'a'
+		f.wtite "Клиент #{@username}, #{@phone}, #{@modelauto}, #{@date_time}"
+		f.close
 		erb :message
 	end
