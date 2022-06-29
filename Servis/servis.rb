@@ -23,8 +23,8 @@ get '/contacts' do
   end
 
 	post '/visit' do
-  	@username 	= params[:username]
-		@phone 			= params[:phone]
+  		@username 	= params[:username]
+		@phone 		= params[:phone]
 		@modelauto 	= params[:modelauto]
 		@date_time 	= params[:date_time]
 
@@ -32,7 +32,7 @@ get '/contacts' do
 		@message = "Дорогой #{@username}, мы будем рады вас видеть #{@date_time}"
 
 		f = File.open 'users.txt', 'a'
-		f.wtite "Клиент #{@username}, #{@phone}, #{@modelauto}, #{@date_time}"
+		f.write "Клиент: #{@username}, #{@phone}, #{@modelauto}, #{@date_time}"
 		f.close
 		erb :message
 	end
