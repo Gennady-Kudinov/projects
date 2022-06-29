@@ -38,9 +38,15 @@ get '/contacts' do
 	end
 
 	post '/client' do
+
+		$time = Time.now
+
 		@auto 		 = params[:auto].upcase
 		@model_auto  = params[:model_auto].upcase
 		@number_auto = params[:number_auto].upcase
+
+		database_file = File.new('BAZA/database.txt', 'a+')
+  		database_file.puts "#{@number_auto}  #{@auto}  #{@model_auto}  #{$km}км. Дата #{$time.strftime('%d %B %Y %H:%M')}"
 
 		response = FileUtils.mkdir_p "BAZA/#{@auto}/#{@model_auto}/#{@number_auto}"
 
