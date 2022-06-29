@@ -46,7 +46,7 @@ get '/contacts' do
 		@number_auto 	= params[:number_auto].upcase
 		@km 			= params[:km]
 		@ecu 			= params[:ecu]
-
+		
 		response = FileUtils.mkdir_p "BAZA/#{@auto}/#{@model_auto}/#{@number_auto}"
 
 		database_file = File.new('BAZA/database.txt', 'a+')
