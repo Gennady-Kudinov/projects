@@ -38,13 +38,19 @@ get '/contacts' do
 	end
 
 	post '/client' do
-		@number_auto = params[:number_auto]
+		@auto 		 = params[:auto].upcase
+		@model_auto  = params[:model_auto].upcase
+		@number_auto = params[:number_auto].upcase
 
-		f = File.open 'database.txt', 'a'
-		f.write "#{@number_auto}"
-		f.close
+		response = FileUtils.mkdir_p "BAZA/#{@auto}/#{@model_auto}/#{@number_auto}"
 
-		$baza = File.open('database.txt') do |f|
-		f.find { |line| line[@number_auto] }
-		end
+		# f = File.open 'database.txt', 'a'
+		# f.write "#{@number_auto}"
+		# f.close
+
+		# $baza = File.open('database.txt') do |f|
+		# f.find { |line| line[@number_auto] }
+		# end
 	end
+
+	
