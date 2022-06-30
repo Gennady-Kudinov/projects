@@ -35,11 +35,25 @@
     <div class="col-md-3 position-relative">
         <label>Запишите тип контроллера</label>
         <input name="ecu" type="text" class="form-control" placeholder="Eсu number">
+        <div class="invalid-feedback">Example invalid form file feedback</div>
     </div>
 
-  <div class="mb-3">
-   <button type="submit" class="btn btn-primary">Записаться</button>
+<div class="col-md-3 position-relative">
+        <label>Введите имя файла для поиска</label>
+        <input name="input_sw" type="text" class="form-control" placeholder="Eсu SW ID">
+        <div class="invalid-feedback">Example invalid form file feedback</div>
+        
+   <button type="submit" class="btn btn-primary">Ввод</button>
+ 
+    </div>
+
+ <div class="mb-3">
+    <input type="file" class="form-control" aria-label="file example" required>
+    <div class="invalid-feedback">Example invalid form file feedback</div>
   </div>
 
+  <div class="mb-3">
+   <button type="submit" class="btn btn-primary">Ввод</button>
+  </div>
 
 </form>
