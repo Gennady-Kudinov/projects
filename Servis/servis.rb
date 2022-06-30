@@ -1,9 +1,9 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
-
+	
 get '/' do
-	erb "Hello! <a href=\"https://github.com/Gennady-Kudinov?tab=packages\">Original</a> pattern has been modified for <a href=\"https://github.com/Gennady-Kudinov/\">Student</a>"
+	erb "Hello! <a href=\"https://github.com/Gennady-Kudinov?tab=packages\">Original</a> pattern has been modified for <a href=\"https://github.com/Gennady-Kudinov/\">Student</a>"	
 end
 
 get '/about' do
@@ -20,9 +20,10 @@ end
 
 get '/contacts' do
 	erb :contacts
-  end
+end
 
 	post '/visit' do
+
   		@username 	= params[:username]
 		@phone 		= params[:phone]
 		@modelauto 	= params[:modelauto]
@@ -41,7 +42,7 @@ get '/contacts' do
 
 		@time = Time.now
 
-		@auto 			= params[:auto]
+		@auto			= params[:auto]
 		@model_auto 	= params[:model_auto]
 		@number_auto 	= params[:number_auto]
 		@km 			= params[:km]
@@ -53,10 +54,13 @@ get '/contacts' do
 		database_file = File.new('BAZA/database.txt', 'a+')
   		database_file.puts "#{@number_auto}  #{@auto}  #{@model_auto}  #{@km}км. Дата #{@time.strftime('%d %B %Y %H:%M')}"
 		database_file.close
-		
+
 		id_client = File.new("BAZA/#{@auto}/#{@model_auto}/#{@number_auto}/#{@number_auto}.html", 'a+')
  		id_client.puts "<body>#{@number_auto} #{@auto} #{@model_auto} #{@km}км. Тип ЭБУ #{@ecu}: Дата #{@time.strftime('%d %B %Y %H:%M')}</br>#{@deffect}</br><body>"
 		id_client.close
+		
+		erb "<body>#{@number_auto} #{@auto} #{@model_auto} #{@km}км: Дата #{@time.strftime('%d %B %Y %H:%M')}</br>#{@deffect}</body>" 
+
 	end
 
 	
