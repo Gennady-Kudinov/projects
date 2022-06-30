@@ -31,7 +31,7 @@ get '/contacts' do
 		@title = 'Большое спасибо'
 		@message = "Дорогой #{@username}, мы будем рады вас видеть #{@date_time}"
 
-		f = File.open 'users.txt', 'a'
+		f = File.new('BAZA/user.txt', 'a+')
 		f.write "Клиент: #{@username}, #{@phone}, #{@modelauto}, #{@date_time}"
 		f.close
 		erb :message
@@ -41,20 +41,22 @@ get '/contacts' do
 
 		@time = Time.now
 
-		@auto 			= params[:auto].upcase
-		@model_auto 	= params[:model_auto].upcase
-		@number_auto 	= params[:number_auto].upcase
+		@auto 			= params[:auto]
+		@model_auto 	= params[:model_auto]
+		@number_auto 	= params[:number_auto]
 		@km 			= params[:km]
 		@ecu 			= params[:ecu]
-		
+		@deffect 		= params[:deffect]
+
 		response = FileUtils.mkdir_p "BAZA/#{@auto}/#{@model_auto}/#{@number_auto}"
 
 		database_file = File.new('BAZA/database.txt', 'a+')
   		database_file.puts "#{@number_auto}  #{@auto}  #{@model_auto}  #{@km}км. Дата #{@time.strftime('%d %B %Y %H:%M')}"
-
-		@id_client = File.new("BAZA/#{@auto}/#{@model_auto}/#{@number_auto}/#{@number_auto}.html", 'a+')
- 		@id_client.puts "<body>#{@number_auto} #{@auto} #{@model_auto} #{@km}км. Тип ЭБУ #{@ecu}: Дата #{@time.strftime('%d %B %Y %H:%M')}<br/>#{@deffect}<br/><body>"
-
+		database_file.close
+		
+		id_client = File.new("BAZA/#{@auto}/#{@model_auto}/#{@number_auto}/#{@number_auto}.html", 'a+')
+ 		id_client.puts "<body>#{@number_auto} #{@auto} #{@model_auto} #{@km}км. Тип ЭБУ #{@ecu}: Дата #{@time.strftime('%d %B %Y %H:%M')}</br>#{@deffect}</br><body>"
+		id_client.close
 	end
 
 	
