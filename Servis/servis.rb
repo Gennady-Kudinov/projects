@@ -49,24 +49,30 @@ end
 		@ecu 			= params[:ecu]
 		@deffect 		= params[:deffect]
 		@input_sw		= params[:input_sw]
+		@sw_file		= params[:sw_file]
 
+#   Создание папки клиента
 		response = FileUtils.mkdir_p "BAZA/#{@auto}/#{@model_auto}/#{@number_auto}"
 
+#   Создание и запись файла для общей базы клиентов
 		database_file = File.new('BAZA/database.txt', 'a+')
   		database_file.puts "#{@number_auto}  #{@auto}  #{@model_auto}  #{@km}км. Дата #{@time.strftime('%d %B %Y %H:%M')}"
 		database_file.close
 
+#	Создание и запись файла с описанием машины клиента в папке клиента
 		id_client = File.new("BAZA/#{@auto}/#{@model_auto}/#{@number_auto}/#{@number_auto}.html", 'a+')
  		id_client.puts "<body>#{@number_auto} #{@auto} #{@model_auto} #{@km}км. Тип ЭБУ #{@ecu}: Дата #{@time.strftime('%d %B %Y %H:%M')}</br>#{@deffect}</br><body>"
 		id_client.close
 
-		sw_file = Dir.glob("D:/Damps/Baza/**/*#{@input_sw}*.bin")
+#   Поиск файла
+		@sw_file = Dir.glob("D:/Damps/Baza/**/*#{@input_sw}*.bin")
 		sw_file.each_with_index { |path, i| puts "#{i + 1} => #{path}" }
 		selected = gets.chomp.to_i
 		erb "#{sw_file[selected - 1]}"
-
-		erb "<body>#{@number_auto} #{@auto} #{@model_auto} #{@km}км: Дата #{@time.strftime('%d %B %Y %H:%M')}</br>#{@deffect}</body>" 
-
-	end
-
 	
+#   Копирование файла
+		FileUtils.cp(@sw_file, "E:/BAZA/#{@auto}/#{@model_auto}/#{@number_auto}/")
+
+#   Вывод на экран результата заполнения данных клиента		
+		erb "<body>#{@number_auto} #{@auto} #{@model_auto} #{@km}км: Дата #{@time.strftime('%d %B %Y %H:%M')}</br>#{@deffect}</body>" 
+end
