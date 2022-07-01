@@ -7,6 +7,7 @@ get '/' do
 end
 
 get '/about' do
+	@error = 'Ошибка обращения'
 	erb :about
 end
 
@@ -23,11 +24,21 @@ get '/contacts' do
 end
 
 	post '/visit' do
+			hh_visit = {
+				:username => 'Введите имя',
+				:phone => 'Введите телефон',
+				:modelauto => 'Введите марку и модель а/м',
+				:date_time => 'Введите дату и время приезда' }
 
   		@username 	= params[:username]
 		@phone 		= params[:phone]
 		@modelauto 	= params[:modelauto]
 		@date_time 	= params[:date_time]
+
+				@error = hh_visit.select {|key,_| params[key] == ""}.values.join(", ")
+				if @error != ''
+					return erb :visit
+				end
 
 		@title = 'Большое спасибо'
 		@message = "Дорогой #{@username}, мы будем рады вас видеть #{@date_time}"
@@ -48,9 +59,7 @@ end
 		@km 			= params[:km]
 		@ecu 			= params[:ecu]
 		@deffect 		= params[:deffect]
-		@input_sw		= params[:input_sw]
 		
-
 #   Создание папки клиента
 		response = FileUtils.mkdir_p "BAZA/#{@auto}/#{@model_auto}/#{@number_auto}"
 
