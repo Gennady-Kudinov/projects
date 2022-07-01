@@ -1,0 +1,5 @@
+CREATE TABLE Brandauto (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    brand_key   VARCHAR UNIQUE,
+    brand_value VARCHAR UNIQUE
+);

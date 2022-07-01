@@ -24,6 +24,8 @@ get '/contacts' do
 end
 
 	post '/visit' do
+
+#		Хеш для ответа на не заполнение поля Визит		
 			hh_visit = {
 				:username => 'Введите имя',
 				:phone => 'Введите телефон',
@@ -35,7 +37,8 @@ end
 		@modelauto 	= params[:modelauto]
 		@date_time 	= params[:date_time]
 
-				@error = hh_visit.select {|key,_| params[key] == ""}.values.join(", ")
+#		Вывод сообщений из хеша в зависимости какое поле не заполнено!
+		@error = hh_visit.select {|key,_| params[key] == ""}.values.join(", ")
 				if @error != ''
 					return erb :visit
 				end
