@@ -1,9 +1,23 @@
+require 'SQlite3'
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
 
 # set :bind, '0.0.0.0'
 # set :port, 80
+
+configure do
+		db = SQLite3::Database.new 'autoservis.db'
+		db.execute 'CREATE TABLE IF NOT EXISTS
+				"user"
+				(
+					"id" INTEGER PRIMARY KEY AUTOINCREMENT,
+					"Username" TEXT,
+					"Phone" TEXT,
+					"Modelauto" TEXT,
+					"date_time" TEXT
+				);'
+end
 
 get '/' do
 	erb "Hello! <a href=\"https://github.com/Gennady-Kudinov?tab=packages\">Original</a> pattern has been modified for <a href=\"https://github.com/Gennady-Kudinov/\">Student</a>"	
@@ -46,13 +60,28 @@ end
 					return erb :visit
 				end
 
+				db = get_db
+				db.execute 'INSERT INTO
+					user
+					(
+						username,
+						phone,
+						modelauto,
+						date_time
+					)
+					values (?, ?, ?, ?)', [@username, @phone, @modelauto, @date_time]
+
 		@title = 'Большое спасибо'
 		@message = "Дорогой #{@username}, мы будем рады вас видеть #{@date_time}"
 
-		f = File.new('BAZA/user.txt', 'a+')
-		f.write "Клиент: #{@username}, #{@phone}, #{@modelauto}, #{@date_time}"
-		f.close
+#		f = File.new('BAZA/user.txt', 'a+')
+#		f.write "Клиент: #{@username}, #{@phone}, #{@modelauto}, #{@date_time}"
+#		f.close
 		erb :message
+	end
+
+	def get_db
+		return SQLite3::Database.new 'autoservis.db'
 	end
 
 	post '/client' do

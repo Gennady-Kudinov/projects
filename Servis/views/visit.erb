@@ -1,7 +1,21 @@
 <h2>Записаться</h2>
 <p>На этой странице вы сможете записаться к нам в Автосервис на ул. Морозова 2 б.</p>
 
+<script type="text/javascript">
+
+$(function() {
+
+$('#datetimepicker').datetimepicker();
+jQuery('#datetimepicker').datetimepicker();
+
+// этот код джава скрип исполнится только после загрузки всей страници
+});
+
+</script>
+
 <form action="/visit" method="POST" role="form">
+
+<div class="p-3 mb-2 bg-warning text-dark">
 
   <div class="form-group">
     <label>Ваше имя</label>
@@ -20,7 +34,7 @@
 
   <div class="form-group">
     <label>Когда вас ждать?</label>
-    <input name="date_time" type="text" class="form-control" placeholder="Введите дату и время" value="<%=@date_time%>">
+    <input id="datetimepicker" name="date_time" type="text" class="form-control" placeholder="Введите дату и время" value="<%=@date_time%>">
   </div>
 
   <button type="submit" class="btn btn-primary">Записаться</button>
