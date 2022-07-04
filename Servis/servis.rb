@@ -8,8 +8,8 @@ def get_db
 end
 
 configure do
-	db = SQLite3::Database.new 'autoservis.db'
-	db.execute 'CREATE TABLE IF NOT EXISTS 
+	@db = SQLite3::Database.new 'autoservis.db'
+	@db.execute 'CREATE TABLE IF NOT EXISTS 
 		"Client"
 		(
 			"id" INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -21,15 +21,15 @@ configure do
 			"Deffect" TEXT,
 			"Date_time" TEXT
 		);'
-
-		db.execute 'CREATE TABLE IF NOT EXISTS "Users" (
+	
+		@db.execute 'CREATE TABLE IF NOT EXISTS "Users" (
 				"id" INTEGER PRIMARY KEY AUTOINCREMENT,
 				"Username"  TEXT,
 				"Phone" TEXT,
 				"Modelauto" TEXT,
 				"Date_time" TEXT
 			);'
-
+		
 end
 
 get '/' do
@@ -73,8 +73,8 @@ end
 					return erb :visit
 				end
 
-				db = get_db
-				db.execute 'INSERT INTO
+				@db = get_db
+				@db.execute 'INSERT INTO
 					users
 					(
 						username,
@@ -95,6 +95,8 @@ end
 
 	post '/client' do
 
+		@time = Time.now
+
 		@auto			= params[:auto]
 		@modelauto	 	= params[:modelauto]
 		@number_auto 	= params[:number_auto]
@@ -102,8 +104,8 @@ end
 		@ecu 			= params[:ecu]
 		@deffect 		= params[:deffect]
 
-		db = get_db
-		db.execute 'INSERT INTO
+		@db = get_db
+		@db.execute 'INSERT INTO
 			client
 			(
 				auto,
@@ -114,11 +116,8 @@ end
 				deffect,
 				date_time
 			)
-			values (?, ?, ?, ?, ?, ?, ?)', [@auto, @modelauto, @number_auto, @km, @ecu, @deffect, @data_time ]
-	db.close
-
-	@time = Time.now
-	@data_time = @time.strftime('%d %B %Y %H:%M')
+			values (?, ?, ?, ?, ?, ?, ?)', [@auto, @modelauto, @number_auto, @km, @ecu, @deffect, @time.strftime('%d %B %Y %H:%M')]
+	@db.close
 
 #   Создание папки клиента
 		response = FileUtils.mkdir_p "BAZA/#{@auto}/#{@model_auto}/#{@number_auto}"
@@ -135,7 +134,6 @@ end
 
 #   Вывод на экран результата заполнения данных клиента		
 		erb "<body>#{@number_auto} #{@auto} #{@modelauto} #{@km}км: Дата #{@time.strftime('%d %B %Y %H:%M')}</br>#{@deffect}</body>" 
-	
-		
 
 	end
+
