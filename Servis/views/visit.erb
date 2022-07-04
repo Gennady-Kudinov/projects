@@ -31,11 +31,18 @@ $('#datetimepicker').datetimepicker();
     <input name="modelauto" type="text" class="form-control" placeholder="Введите марку и модель а/м" value="<%=@modelauto%>">
   </div>
 
-  <div class="form-group">
-    <label>Когда вас ждать?</label>
-    <input id="datetimepicker" name="date_time" type="text" class="form-control" placeholder="Введите дату и время" value="<%=@date_time%>">
-  </div>
+<div class = "form-group col col-md-4 col-sm-4 col-12">
+<label>Когда вас ждать?</label>
+    <div class='input-group date' id='datetimepicker1'>
+        <input name="date_time" type='text' class="form-control" id="servDate" placeholder="Введите дату и время" value="<%=@date_time%>"/>
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
+</div>
 
-  <button type="submit" class="btn btn-primary">Записаться</button>
+<button type="submit" class="btn btn-primary position-relative">
+    <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidden">Записаться</span></span>
+</button>
 
 </form>

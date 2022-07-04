@@ -3,34 +3,33 @@ require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
 
-
+def get_db
+	return SQLite3::Database.new 'autoservis.db'
+end
 
 configure do
-			db = SQLite3::Database.new 'autoservis.db'
-			db.execute 'CREATE TABLE IF NOT EXISTS 
-				"Client"
-				(
-					"id" INTEGER PRIMARY KEY AUTOINCREMENT,
-					"Number_auto" TEXT,
-					"Auto" TEXT,
-					"Modelauto" TEXT,
-					"Km" INTEGER,
-					"Ecu" TEXT,
-					"Deffect" TEXT,
-					"Date_time" TEXT
-				);'
+	db = SQLite3::Database.new 'autoservis.db'
+	db.execute 'CREATE TABLE IF NOT EXISTS 
+		"Client"
+		(
+			"id" INTEGER PRIMARY KEY AUTOINCREMENT,
+			"Number_auto" TEXT,
+			"Auto" TEXT,
+			"Modelauto" TEXT,
+			"Km" INTEGER,
+			"Ecu" TEXT,
+			"Deffect" TEXT,
+			"Date_time" TEXT
+		);'
 
-				db.execute 'CREATE TABLE IF NOT EXISTS
-					"Users"
-					(
-						"id" INTEGER PRIMARY KEY AUTOINCREMENT,
-						"Username" TEXT,
-						"Phone" TEXT,
-						"Modelauto" TEXT,
-						"Phone" TEXT,
-						"date_time" TEXT
-					);'
-
+		db.execute 'CREATE TABLE IF NOT EXISTS "Users" (
+				"id" INTEGER PRIMARY KEY AUTOINCREMENT,
+				"Username"  TEXT,
+				"Phone" TEXT,
+				"Modelauto" TEXT,
+				"Date_time" TEXT
+			);'
+db.close
 end
 
 get '/' do
@@ -84,7 +83,7 @@ end
 						date_time
 					)
 					values (?, ?, ?, ?)', [@username, @phone, @modelauto, @date_time]
-
+db.close
 		@title = 'Большое спасибо'
 		@message = "Дорогой #{@username}, мы будем рады вас видеть #{@date_time}"
 
@@ -103,9 +102,6 @@ end
 		@ecu 			= params[:ecu]
 		@deffect 		= params[:deffect]
 
-		@time = Time.now
-		@date_time		= @time.strftime('%d %B %Y %H:%M')
-
 		db = get_db
 		db.execute 'INSERT INTO
 			client
@@ -119,9 +115,13 @@ end
 				date_time
 			)
 			values (?, ?, ?, ?, ?, ?, ?)', [@auto, @modelauto, @number_auto, @km, @ecu, @deffect, @date_time ]
-		
+	db.close
+
+	@time = Time.now
+	@date_time		= @time.strftime('%d %B %Y %H:%M')
+
 #   Создание папки клиента
-#		response = FileUtils.mkdir_p "BAZA/#{@auto}/#{@model_auto}/#{@number_auto}"
+		response = FileUtils.mkdir_p "BAZA/#{@auto}/#{@model_auto}/#{@number_auto}"
 
 #   Создание и запись файла для общей базы клиентов
 #		database_file = File.new('BAZA/database.txt', 'a+')
@@ -136,8 +136,4 @@ end
 #   Вывод на экран результата заполнения данных клиента		
 		erb "<body>#{@number_auto} #{@auto} #{@modelauto} #{@km}км: Дата #{@time.strftime('%d %B %Y %H:%M')}</br>#{@deffect}</body>" 
 	
-	end
-
-	def get_db
-		return SQLite3::Database.new 'autoservis.db'
 	end
