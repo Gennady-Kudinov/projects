@@ -1,0 +1,21 @@
+<table border="1">
+  <tr>
+    <th>Имя</th>
+    <th>Телефон</th>
+    <th>Марка авто</th>
+    <th>Комментарий</th>
+  </tr>
+
+<% @results.each do |row| %>
+
+   <tr <%= "style='background-color: red; color: white;'" if row == @results.first %>>
+   
+    <td><%= row['username'] %></td>
+    <td><%= row['phone'] %></td>
+    <td><%= row['modelauto'] %></td>
+    <td><%= row['date_time'] %></td>
+  </tr>
+
+<% end %>
+
+</table>
