@@ -29,7 +29,7 @@ configure do
 				"Modelauto" TEXT,
 				"Date_time" TEXT
 			);'
-db.close
+
 end
 
 get '/' do
@@ -83,7 +83,7 @@ end
 						date_time
 					)
 					values (?, ?, ?, ?)', [@username, @phone, @modelauto, @date_time]
-db.close
+
 		@title = 'Большое спасибо'
 		@message = "Дорогой #{@username}, мы будем рады вас видеть #{@date_time}"
 
@@ -114,11 +114,11 @@ db.close
 				deffect,
 				date_time
 			)
-			values (?, ?, ?, ?, ?, ?, ?)', [@auto, @modelauto, @number_auto, @km, @ecu, @deffect, @date_time ]
+			values (?, ?, ?, ?, ?, ?, ?)', [@auto, @modelauto, @number_auto, @km, @ecu, @deffect, @data_time ]
 	db.close
 
 	@time = Time.now
-	@date_time		= @time.strftime('%d %B %Y %H:%M')
+	@data_time = @time.strftime('%d %B %Y %H:%M')
 
 #   Создание папки клиента
 		response = FileUtils.mkdir_p "BAZA/#{@auto}/#{@model_auto}/#{@number_auto}"
@@ -136,4 +136,6 @@ db.close
 #   Вывод на экран результата заполнения данных клиента		
 		erb "<body>#{@number_auto} #{@auto} #{@modelauto} #{@km}км: Дата #{@time.strftime('%d %B %Y %H:%M')}</br>#{@deffect}</body>" 
 	
+		
+
 	end
