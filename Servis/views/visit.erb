@@ -1,5 +1,5 @@
 <h2>Записаться</h2>
-<p>На этой странице вы сможете записаться к нам в Автосервис на ул. Морозова 2 б.</p>
+<h3>На этой странице вы сможете записаться к нам в Автосервис</h3>
 
 <script type="text/javascript">
 
@@ -72,7 +72,13 @@ $('#datetimepicker').datetimepicker();
     </datalist>
     </div>
 
-<div class = "form-group col col-md-4 col-sm-4 col-12">
+
+    <div class="col-md-3 position-relative">
+    <label>Введите Гос. номер а/м</label>
+    <input name="number_auto" type="text" class="form-control" placeholder="Гос. Номер а/м">
+    </div>
+
+<div class="form-group">
 <label>Когда вас ждать?</label>
     <div class='input-group date' id='datetimepicker1'>
         <input name="date_time" type='text' class="form-control" id="servDate" placeholder="Введите дату и время" value="<%=@date_time%>"/>
@@ -82,8 +88,10 @@ $('#datetimepicker').datetimepicker();
     </div>
 </div>
 
+<div class = "form-group col col-md-4 col-sm-4 col-12">
 <button type="submit" class="btn btn-primary position-relative">
     <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidden">Записаться</span></span>
 </button>
+</div>
 
 </form>

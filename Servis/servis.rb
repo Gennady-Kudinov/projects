@@ -27,6 +27,7 @@ configure do
 				"Username"  TEXT,
 				"Phone" TEXT,
 				"Modelauto" TEXT,
+				"Number_auto" TEXT,
 				"Date_time" TEXT
 			);'
 		
@@ -49,6 +50,10 @@ get '/client' do
 	erb :client
 end
 
+get '/autoservice' do
+	erb :autoservice
+end
+
 get '/contacts' do
 	erb :contacts
 end
@@ -60,11 +65,13 @@ end
 				:username => 'Введите имя',
 				:phone => 'Введите телефон',
 				:modelauto => 'Введите марку и модель а/м',
+				:number_auto => 'Введите Гос. номер а/м',
 				:date_time => 'Введите дату и время приезда' }
 
-  		@username 	= params[:username]
+  		@username  	= params[:username]
 		@phone 		= params[:phone]
-		@modelauto 	= params[:modelauto]
+		@modelauto  = params[:modelauto]
+		@number_auto = params[:number_auto]
 		@date_time 	= params[:date_time]
 
 #		Вывод сообщений из хеша в зависимости какое поле не заполнено!
@@ -80,12 +87,13 @@ end
 						username,
 						phone,
 						modelauto,
+						number_auto,
 						date_time
 					)
-					values (?, ?, ?, ?)', [@username, @phone, @modelauto, @date_time]
+					values (?, ?, ?, ?, ?)', [@username, @phone, @modelauto, @number_auto, @date_time]
 
 		@title = 'Большое спасибо'
-		@message = "Дорогой #{@username}, мы будем рады вас видеть #{@date_time}"
+		@message = "Дорогой(я) #{@username}, мы будем рады вас видеть на #{@modelauto} в #{@date_time}"
 
 #		f = File.new('BAZA/user.txt', 'a+')
 #		f.write "Клиент: #{@username}, #{@phone}, #{@modelauto}, #{@date_time}"
@@ -101,6 +109,7 @@ end
 
 #    Хеш с Моделями автомобилей, использовать как словарь
 		@hash_model = {
+			'q5' => 'Q5',
 			'x1' => 'X1',
 			'х1' => 'X1',
 			'x2' => 'X2',
