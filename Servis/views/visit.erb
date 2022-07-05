@@ -25,10 +25,52 @@ $('#datetimepicker').datetimepicker();
     <input name="phone" type="text" class="form-control" placeholder="Ваш телефон" value="<%=@phone%>">
   </div>
 
-  <div class="form-group">
-    <label>Какая модель автомобиля?</label>
-    <input name="modelauto" type="text" class="form-control" placeholder="Введите марку и модель а/м" value="<%=@modelauto%>">
-  </div>
+
+  <div class="col-md-3 position-relative">
+    <label for="exampleDataList" class="form-label">Выберите марку а/м</label>
+    <input name="modelauto" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Марка а/м...">
+    <datalist id="datalistOptions">
+      <option value="AUDI">
+      <option value="ACURA">
+      <option value="BMW">
+      <option value="CHERY">
+      <option value="CITROEN">
+      <option value="DAEWOO">
+      <option value="DODGE">
+      <option value="DAIHATSU">
+      <option value="DATSUN">
+      <option value="FORD">
+      <option value="INFINITI">
+      <option value="GAZ">
+      <option value="GEELY">
+      <option value="GENESIS">
+      <option value="GREAT WALL">
+      <option value="HAVAL">
+      <option value="HONDA">
+      <option value="HYUNDAI">
+      <option value="KIA">
+      <option value="LEXUS">
+      <option value="LIFAN">
+      <option value="MAZDA">
+      <option value="MINI">
+      <option value="MITSUBISHI">
+      <option value="NISSAN">
+      <option value="OPEL">
+      <option value="PEUGEOT">
+      <option value="RAVON">
+      <option value="RENAULT">
+      <option value="ROVER">
+      <option value="SEAT">
+      <option value="SKODA">
+      <option value="SSANGYONG">
+      <option value="SUZUKI">
+      <option value="TOYOTA">
+      <option value="UAZ">
+      <option value="VAZ">
+      <option value="VOLKSWAGEN">
+      <option value="ZAZ">
+    </datalist>
+    </div>
 
 <div class = "form-group col col-md-4 col-sm-4 col-12">
 <label>Когда вас ждать?</label>

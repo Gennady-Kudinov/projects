@@ -11,12 +11,53 @@
     </div>
 
     <div class="col-md-3 position-relative">
-    <label>Введите бренд а/м</label>
-    <input name="auto" type="text" class="form-control" placeholder="Бренд а/м">
+    <label for="exampleDataList" class="form-label">Выберите марку а/м</label>
+    <input name="auto" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Марка а/м...">
+    <datalist id="datalistOptions">
+      <option value="AUDI">
+      <option value="ACURA">
+      <option value="BMW">
+      <option value="CHERY">
+      <option value="CITROEN">
+      <option value="DAEWOO">
+      <option value="DODGE">
+      <option value="DAIHATSU">
+      <option value="DATSUN">
+      <option value="FORD">
+      <option value="INFINITI">
+      <option value="GAZ">
+      <option value="GEELY">
+      <option value="GENESIS">
+      <option value="GREAT WALL">
+      <option value="HAVAL">
+      <option value="HONDA">
+      <option value="HYUNDAI">
+      <option value="KIA">
+      <option value="LEXUS">
+      <option value="LIFAN">
+      <option value="MAZDA">
+      <option value="MINI">
+      <option value="MITSUBISHI">
+      <option value="NISSAN">
+      <option value="OPEL">
+      <option value="PEUGEOT">
+      <option value="RAVON">
+      <option value="RENAULT">
+      <option value="ROVER">
+      <option value="SEAT">
+      <option value="SKODA">
+      <option value="SSANGYONG">
+      <option value="SUZUKI">
+      <option value="TOYOTA">
+      <option value="UAZ">
+      <option value="VAZ">
+      <option value="VOLKSWAGEN">
+      <option value="ZAZ">
+    </datalist>
     </div>
 
     <div class="col-md-3 position-relative">
-    <label>Введите марку и модель а/м</label>
+    <label>Введите модель а/м</label>
     <input name="modelauto" type="text" class="form-control" placeholder="Модель а/м">
     </div>
 
@@ -25,19 +66,17 @@
     <input name="km" type="text" class="form-control" placeholder="Пробег км.">
     </div>
 
-
   <div class="mb-3">
     <label>Введите неисправности а/м на которые жалуется владелец</label>
-    <textarea name="deffect" class="form-control is-invalid" id="validationTextarea" placeholder="Required example textarea" required></textarea>
+    <textarea name="deffect" class="form-control is-invalid" id="validationTextarea" placeholder="Введите данные о неисправности а/м и данные а/м" required></textarea>
     <div class="invalid-feedback">
-      Please enter a message in the textarea.
     </div>
   </div>
 
     <div class="col-md-3 position-relative">
         <label>Запишите тип контроллера</label>
         <input name="ecu" type="text" class="form-control" placeholder="Eсu number">
-        <div class="invalid-feedback">SW ID</div>
+        <div class="invalid-feedback">==============</div>
         <button type="submit" class="btn btn-primary"><< В в о д >></button>
     </div>
 
