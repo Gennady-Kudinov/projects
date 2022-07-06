@@ -1,5 +1,5 @@
 <h3>Учет ремонтируемых а/м в Автосервис на ул. Морозова 2 б</h3>
-<p>На этой странице ведется учет приехавших а/м</p>
+<h4><p>На этой странице ведется учет приехавших а/м</p></h4>
 
 <form action="/client" method="POST" role="form">
    
@@ -73,11 +73,20 @@
     </div>
   </div>
   
- <div class ="mb-3">
-        <label>Запишите тип контроллера</label>
-        <input name="ecu" type="text" class="form-control" placeholder="Eсu number">
-        <div class="invalid-feedback">==============</div>
-        <button type="submit" class="btn btn-primary"><< В в о д >></button>
-   </div> 
+ <div class="col-md-3 position-relative">
+      <label>Запишите тип контроллера</label>
+      <input name="ecu" type="text" class="form-control" placeholder="Идентификатор софта, эбу, вин">
+    </div>
+
+ <div class="col-md-3 position-relative">
+      <label>Введите стоимость услуг</label>
+      <input name="price" type="text" class="form-control" placeholder="Цена или стоимость у слуг">
+      
+    </div>
+
+  <br> <br> <br> <br>
+
+    <button type="submit" class="btn btn-primary"><< В в о д >></button>
+<br><br>
 
 </form>

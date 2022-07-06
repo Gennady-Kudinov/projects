@@ -19,6 +19,7 @@ configure do
 			"Km" INTEGER,
 			"Ecu" TEXT,
 			"Deffect" TEXT,
+			"price" TEXT,
 			"Date_time" TEXT
 		);'
 	
@@ -468,8 +469,9 @@ end
 		@km 			= params[:km]
 		@ecu 			= params[:ecu]
 		@deffect 		= params[:deffect]
+		@price			= params[:price]
 
-				@key_model = @modelauto
+				@key_model = @modelauto		
   				@modelauto = @hash_model[@key_model]
 
 		@db = get_db
@@ -482,9 +484,10 @@ end
 				km,
 				ecu,
 				deffect,
+				price,
 				date_time
 			)
-			values (?, ?, ?, ?, ?, ?, ?)', [@auto, @modelauto, @number_auto, @km, @ecu, @deffect, @time.strftime('%d %B %Y %H:%M')]
+			values (?, ?, ?, ?, ?, ?, ?, ?)', [@auto, @modelauto, @number_auto, @km, @ecu, @deffect, @price, @time.strftime('%d %B %Y %H:%M')]
 	
 			@db.close
 
@@ -493,15 +496,15 @@ end
 
 #   Создание и запись файла для общей базы клиентов
 		database_file = File.new('BAZA/database.txt', 'a+')
- 		database_file.puts "#{@number_auto}  #{@auto}  #{@modelauto}  #{@km}км. Дата #{@time.strftime('%d %B %Y %H:%M')}"
+ 		database_file.puts "#{@number_auto}  #{@auto}  #{@modelauto}  #{@km}км.  Сумма #{@price}  Дата #{@time.strftime('%d %B %Y %H:%M')}"
 		database_file.close
 
 #	Создание и запись файла с описанием машины клиента в папке клиента
 		id_client = File.new("BAZA/#{@auto}/#{@modelauto}/#{@number_auto}/#{@number_auto}.html", 'a+')
-		id_client.puts "<body>#{@number_auto} #{@auto} #{@modelauto} #{@km}км. Тип ЭБУ #{@ecu}: Дата #{@time.strftime('%d %B %Y %H:%M')}</br>#{@deffect}</br><body>"
+		id_client.puts "<body>#{@number_auto} #{@auto} #{@modelauto} #{@km}км. Тип ЭБУ #{@ecu}: Сумма #{@price} Дата #{@time.strftime('%d %B %Y %H:%M')}</br>#{@deffect}</br><body>"
 		id_client.close
 
 #   Вывод на экран результата заполнения данных клиента		
-		erb "<body>#{@number_auto} #{@auto} #{@modelauto} #{@km}км: Дата #{@time.strftime('%d %B %Y %H:%M')}</br>#{@deffect}</body>" 
+		erb "<body>#{@number_auto} #{@auto} #{@modelauto} #{@km}км: Сумма #{@price} Дата #{@time.strftime('%d %B %Y %H:%M')}</br>#{@deffect}</body>" 
 
 	end
