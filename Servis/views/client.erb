@@ -7,12 +7,12 @@
 
     <div class="col-md-3 position-relative">
     <label>Введите Гос. номер а/м</label>
-    <input name="number_auto" type="text" class="form-control" placeholder="Гос. Номер а/м">
+    <input name="number_auto" type="text" class="form-control" placeholder="Гос. Номер а/м" value="<%=@number_auto%>">
     </div>
 
     <div class="col-md-3 position-relative">
     <label for="exampleDataList" class="form-label">Выберите марку а/м</label>
-    <input name="auto" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Марка а/м...">
+    <input name="auto" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Марка а/м..." value="<%=@auto%>">
     <datalist id="datalistOptions">
       <option value="AUDI">
       <option value="ACURA">
@@ -58,29 +58,29 @@
 
     <div class="col-md-3 position-relative">
     <label>Введите модель а/м</label>
-    <input name="modelauto" type="text" class="form-control" placeholder="Модель а/м">
+    <input name="modelauto" type="text" value="<%=@modelauto%>" class="form-control" placeholder="Модель а/м">
     </div>
 
     <div class="col-md-3 position-relative">
     <label>Введите пробег а/м в км.</label>
-    <input name="km" type="text" class="form-control" placeholder="Пробег км.">
+    <input name="km" type="text" class="form-control" placeholder="Пробег км." value="<%=@km%>">
     </div>
 
   <div class="mb-3">
     <label>Введите неисправности а/м на которые жалуется владелец</label>
-    <textarea name="deffect" class="form-control is-invalid" id="validationTextarea" placeholder="Введите данные о неисправности а/м и данные а/м" required></textarea>
+    <textarea name="deffect" value="<%=@deffect%>" class="form-control is-invalid" id="validationTextarea" placeholder="Введите данные о неисправности а/м и данные а/м" required></textarea>
     <div class="invalid-feedback">
     </div>
   </div>
   
  <div class="col-md-3 position-relative">
       <label>Запишите тип контроллера</label>
-      <input name="ecu" type="text" class="form-control" placeholder="Идентификатор софта, эбу, вин">
+      <input name="ecu" type="text" class="form-control" placeholder="Идентификатор софта, эбу, вин" value="<%=@ecu%>">
     </div>
 
  <div class="col-md-3 position-relative">
       <label>Введите стоимость услуг</label>
-      <input name="price" type="text" class="form-control" placeholder="Цена или стоимость у слуг">
+      <input name="price" type="text" class="form-control" placeholder="Цена или стоимость у слуг" value="<%=@price%>">
       
     </div>
 

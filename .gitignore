@@ -28,3 +28,8 @@ Servis/brand.db3
 .gitignore
 .DS_Store
 Servis/.DS_Store
+Servis/test.rb
+Servis/BAZA/AUDI/K911HE71/K911HE71.html
+Servis/test.rb
+Servis/views/list_auto.erb
+Servis/username.erb

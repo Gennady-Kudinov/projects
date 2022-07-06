@@ -105,7 +105,7 @@ end
 	end
 
 	post '/client' do
-
+		
 		@time = Time.now
 
 #    Хеш с Моделями автомобилей, использовать как словарь
@@ -463,6 +463,14 @@ end
 			'cx9' => 'CX9'
 		  }
 
+#		Хеш для ответа на не заполнение поля Визит		
+	hh_client = {
+		:number_auto => 'Запишите Гос. номер а/м',
+		:auto => 'Выберите марку а/м',
+		:modelauto => 'Вы не записали модель а/м',
+		:km => 'Запишите пробег в км'
+	}
+
 		@auto			= params[:auto]
 		@modelauto	 	= params[:modelauto]
 		@number_auto 	= params[:number_auto]
@@ -473,6 +481,12 @@ end
 
 				@key_model = @modelauto		
   				@modelauto = @hash_model[@key_model]
+
+#		Вывод сообщений из хеша в зависимости какое поле не заполнено!
+		@error = hh_client.select {|key,_| params[key] == ""}.values.join(", ")
+		if @error != ''
+			return erb :client
+		end
 
 		@db = get_db
 		@db.execute 'INSERT INTO
