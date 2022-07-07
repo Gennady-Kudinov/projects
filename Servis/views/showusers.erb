@@ -1,0 +1,31 @@
+<h3>Страница пользователя для автосервиса</h3>
+
+<table class="table">
+
+ <%= @results %>
+<thead>
+  <tr>
+    <th>Имя</th>
+    <th>Телефон</th>
+    <th>Марка авто</th>
+    <th>Номер а/м</th>
+    <th>Дата и время</th>
+  </tr>
+</thead>
+
+  <% @results.each do |row| %>
+ <tbody class="table-group-divider">
+    <tr>
+    <th scope="row">1</th>
+    <td>Mark</td>
+      <td><%= row['username']%></td>
+      <td><%= row['phone'] %></td>
+      <td><%= row['modelauto'] %></td>
+      <td><%= row['number_auto'] %></td>
+      <td><%= row['date_time'] %></td>
+    </tr>
+    </tbody>
+
+<%end%>
+
+</table>

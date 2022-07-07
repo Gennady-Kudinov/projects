@@ -4,12 +4,14 @@ require 'sinatra'
 require 'sinatra/reloader'
 
 def get_db
-	return SQLite3::Database.new 'autoservis.db'
-end
+	db = SQLite3::Database.new 'autoservis.db'
+	db.results_as_hash = true
+	return db
+  end
 
 configure do
-	@db = SQLite3::Database.new 'autoservis.db'
-	@db.execute 'CREATE TABLE IF NOT EXISTS 
+	db = SQLite3::Database.new 'autoservis.db'
+	db.execute 'CREATE TABLE IF NOT EXISTS 
 		"Client"
 		(
 			"id" INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -23,7 +25,7 @@ configure do
 			"Date_time" TEXT
 		);'
 	
-		@db.execute 'CREATE TABLE IF NOT EXISTS "Users" (
+		db.execute 'CREATE TABLE IF NOT EXISTS "Users" (
 				"id" INTEGER PRIMARY KEY AUTOINCREMENT,
 				"Username"  TEXT,
 				"Phone" TEXT,
@@ -39,7 +41,6 @@ get '/' do
 end
 
 get '/about' do
-	@error = 'Ошибка обращения'
 	erb :about
 end
 
@@ -51,60 +52,62 @@ get '/client' do
 	erb :client
 end
 
-get '/autoservice' do
-	erb :autoservice
+get '/showusers' do
+	db = get_db
+	@results = db.execute 'SELECT * FROM Users ORDER BY id DESC'
+	erb :showusers
 end
 
 get '/contacts' do
 	erb :contacts
 end
 
-	post '/visit' do
+post '/visit' do
 
-#		Хеш для ответа на не заполнение поля Визит		
-			hh_visit = {
-				:username => 'Введите имя',
-				:phone => 'Введите телефон',
-				:modelauto => 'Введите марку и модель а/м',
-				:number_auto => 'Введите Гос. номер а/м',
-				:date_time => 'Введите дату и время приезда' }
-
-  		@username  	= params[:username]
-		@phone 		= params[:phone]
-		@modelauto  = params[:modelauto]
-		@number_auto = params[:number_auto]
-		@date_time 	= params[:date_time]
-
-#		Вывод сообщений из хеша в зависимости какое поле не заполнено!
-		@error = hh_visit.select {|key,_| params[key] == ""}.values.join(", ")
-				if @error != ''
-					return erb :visit
-				end
-
-				@db = get_db
-				@db.execute 'INSERT INTO
-					users
-					(
-						username,
-						phone,
-						modelauto,
-						number_auto,
-						date_time
-					)
-					values (?, ?, ?, ?, ?)', [@username, @phone, @modelauto, @number_auto, @date_time]
-
-		@title = 'Большое спасибо'
-		@message = "Дорогой(я) #{@username}, мы будем рады вас видеть на #{@modelauto} в #{@date_time}"
-
-#		f = File.new('BAZA/user.txt', 'a+')
-#		f.write "Клиент: #{@username}, #{@phone}, #{@modelauto}, #{@date_time}"
-#		f.close
+	#		Хеш для ответа на не заполнение поля Визит		
+				hh_visit = {
+					:username => 'Введите имя',
+					:phone => 'Введите телефон',
+					:modelauto => 'Введите марку и модель а/м',
+					:number_auto => 'Введите Гос. номер а/м',
+					:date_time => 'Введите дату и время приезда' }
 	
-		erb :message
+			@username  	= params[:username]
+			@phone 		= params[:phone]
+			@modelauto  = params[:modelauto]
+			@number_auto = params[:number_auto]
+			@date_time 	= params[:date_time]
+	
+	#		Вывод сообщений из хеша в зависимости какое поле не заполнено!
+			@error = hh_visit.select {|key,_| params[key] == ""}.values.join(", ")
+					if @error != ''
+						return erb :visit
+					end
+	
+					db = get_db
+					db.execute 'INSERT INTO
+						users
+						(
+							username,
+							phone,
+							modelauto,
+							number_auto,
+							date_time
+						)
+						values (?, ?, ?, ?, ?)', [@username, @phone, @modelauto, @number_auto, @date_time]
+	
+			@title = 'Большое спасибо'
+			@message = "Дорогой(я) #{@username}, мы будем рады вас видеть на #{@modelauto} в #{@date_time}"
+	
+	#		f = File.new('BAZA/user.txt', 'a+')
+	#		f.write "Клиент: #{@username}, #{@phone}, #{@modelauto}, #{@date_time}"
+	#		f.close
 		
+			erb :message
+			
 	end
 
-	post '/client' do
+		post '/client' do
 		
 		@time = Time.now
 
@@ -488,8 +491,8 @@ end
 			return erb :client
 		end
 
-		@db = get_db
-		@db.execute 'INSERT INTO
+		db = get_db
+		db.execute 'INSERT INTO
 			client
 			(
 				auto,
@@ -503,7 +506,7 @@ end
 			)
 			values (?, ?, ?, ?, ?, ?, ?, ?)', [@auto, @modelauto, @number_auto, @km, @ecu, @deffect, @price, @time.strftime('%d %B %Y %H:%M')]
 	
-			@db.close
+			db.close
 
 #   Создание папки клиента
 		response = FileUtils.mkdir_p "BAZA/#{@auto}/#{@modelauto}/#{@number_auto}"
