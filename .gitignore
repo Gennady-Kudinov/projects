@@ -34,3 +34,5 @@ Servis/test.rb
 Servis/views/list_auto.erb
 Servis/username.erb
 Servis/views/show.erb
+Servis/ключ к таблице
+Servis/views/autoservice.erb

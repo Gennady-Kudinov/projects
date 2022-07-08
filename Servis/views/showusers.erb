@@ -1,31 +1,32 @@
 <h3>Страница пользователя для автосервиса</h3>
 
-<table class="table">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Имя</th>
+      <th>Телефон</th>
+      <th>Марка авто</th>
+      <th>Номер а/м</th>
+      <th>Дата и время</th>
+    </tr>
+  </thead>
 
- <%= @results %>
-<thead>
-  <tr>
-    <th>Имя</th>
-    <th>Телефон</th>
-    <th>Марка авто</th>
-    <th>Номер а/м</th>
-    <th>Дата и время</th>
-  </tr>
-</thead>
+  </br>
+  </br>
+
+  <body>
 
   <% @results.each do |row| %>
- <tbody class="table-group-divider">
-    <tr>
-    <th scope="row">1</th>
-    <td>Mark</td>
-      <td><%= row['username']%></td>
-      <td><%= row['phone'] %></td>
-      <td><%= row['modelauto'] %></td>
-      <td><%= row['number_auto'] %></td>
-      <td><%= row['date_time'] %></td>
-    </tr>
-    </tbody>
 
-<%end%>
+    <tr <%= "style='background-color: red; color: grey;'" if row == @results.first %>>
+      <td><%= row['Username'] %></td>
+      <td><%= row['Phone'] %></td>
+      <td><%= row['Modelauto'] %></td>
+      <td><%= row['Number_auto'] %></td>
+      <td><%= row['Date_time'] %></td>
+    </tr>
+
+<% end %>
+</body>
 
 </table>

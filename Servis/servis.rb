@@ -22,12 +22,13 @@ configure do
 			"Ecu" TEXT,
 			"Deffect" TEXT,
 			"price" TEXT,
+			"phone" INTEGER,
 			"Date_time" TEXT
 		);'
 	
 		db.execute 'CREATE TABLE IF NOT EXISTS "Users" (
 				"id" INTEGER PRIMARY KEY AUTOINCREMENT,
-				"Username"  TEXT,
+				"Username" TEXT,
 				"Phone" TEXT,
 				"Modelauto" TEXT,
 				"Number_auto" TEXT,
@@ -57,6 +58,16 @@ get '/showusers' do
 	@results = db.execute 'SELECT * FROM Users ORDER BY id DESC'
 	erb :showusers
 end
+
+get '/showclients'do
+	db = get_db
+	@results = db.execute 'SELECT * FROM Client ORDER BY id DESC'
+	erb :showclients
+end
+
+get '/admin/autoservis' do
+	erb :autoservis
+  end
 
 get '/contacts' do
 	erb :contacts
@@ -207,6 +218,7 @@ post '/visit' do
 			'ix25' => 'IX25',
 			'ix35' => 'IX35',
 			'ix55' => 'IX55',
+			'fx35' => 'FX35',
 			'kona' => 'KONA',
 			'matrix' => 'MATRIX',
 			'матрикс' => 'MATRIX',
@@ -376,6 +388,8 @@ post '/visit' do
 			'астран' => 'ASTRA H',
 			'исигния' => 'ISIGNIA',
 			'isignia' => 'ISIGNIA',
+			'x60' => 'X60',
+			'х60' => 'X60',
 			'tigo' => 'TIGO',
 			'тиго' => 'TIGO',
 			'amulet' => 'AMULET',
@@ -445,6 +459,11 @@ post '/visit' do
 			'avensis' => 'AVENSIS',
 			'berlingo' => 'BERLINGO',
 			'берлинго' => 'BERLINGO',
+			'308' => '308',
+			'3008' => '3008',
+			'408' => '408',
+			'4008' => '4008',
+			'207' => '207',
 			'c4' => 'C4',
 			'с4' => 'C4',
 			'c3' => 'C3',
@@ -453,9 +472,13 @@ post '/visit' do
 			'срв' => 'CRV',
 			'acord' => 'ACORD',
 			'акорд' => 'ACORD',
+			'civic' => 'CIVIC',
+			'цивик'=> 'CIVIC',
 			'action' => 'ACTION',
 			'экшен' => 'ACTION',
 			'sx4' => 'SX4',
+			'liana' => 'LIANA',
+			'лиана' => 'LIANA',
 			'grandvitara' => 'GRAND VITARA',
 			'грандвитара' => 'GRAND VITARA',
 			'mazda3' => 'MAZDA 3',
@@ -480,6 +503,7 @@ post '/visit' do
 		@km 			= params[:km]
 		@ecu 			= params[:ecu]
 		@deffect 		= params[:deffect]
+		@phone			= params[:phone]
 		@price			= params[:price]
 
 				@key_model = @modelauto		
@@ -502,23 +526,24 @@ post '/visit' do
 				ecu,
 				deffect,
 				price,
+				phone,
 				date_time
 			)
-			values (?, ?, ?, ?, ?, ?, ?, ?)', [@auto, @modelauto, @number_auto, @km, @ecu, @deffect, @price, @time.strftime('%d %B %Y %H:%M')]
+			values (?, ?, ?, ?, ?, ?, ?, ?, ?)', [@auto, @modelauto, @number_auto, @km, @ecu, @deffect, @price, @phone, @time.strftime('%d %B %Y %H:%M')]
 	
 			db.close
 
 #   Создание папки клиента
-		response = FileUtils.mkdir_p "BAZA/#{@auto}/#{@modelauto}/#{@number_auto}"
+		response = FileUtils.mkdir_p "E:/BAZA/#{@auto}/#{@modelauto}/#{@number_auto}"
 
 #   Создание и запись файла для общей базы клиентов
-		database_file = File.new('BAZA/database.txt', 'a+')
- 		database_file.puts "#{@number_auto}  #{@auto}  #{@modelauto}  #{@km}км.  Сумма #{@price}  Дата #{@time.strftime('%d %B %Y %H:%M')}"
+		database_file = File.new('E:/BAZA/database.txt', 'a+')
+ 		database_file.puts "#{@number_auto}  #{@auto}  #{@modelauto}  #{@km}км.  Сумма #{@price} Телефон #{@phone} Дата #{@time.strftime('%d %B %Y %H:%M')}"
 		database_file.close
 
 #	Создание и запись файла с описанием машины клиента в папке клиента
-		id_client = File.new("BAZA/#{@auto}/#{@modelauto}/#{@number_auto}/#{@number_auto}.html", 'a+')
-		id_client.puts "<body>#{@number_auto} #{@auto} #{@modelauto} #{@km}км. Тип ЭБУ #{@ecu}: Сумма #{@price} Дата #{@time.strftime('%d %B %Y %H:%M')}</br>#{@deffect}</br><body>"
+		id_client = File.new("E:/BAZA/#{@auto}/#{@modelauto}/#{@number_auto}/#{@number_auto}.html", 'a+')
+		id_client.puts "<body>#{@number_auto} #{@auto} #{@modelauto} #{@km}км. Тип ЭБУ #{@ecu}: Сумма #{@price} Телефон #{@phone} Дата #{@time.strftime('%d %B %Y %H:%M')}</br>#{@deffect}</br><body>"
 		id_client.close
 
 #   Вывод на экран результата заполнения данных клиента		

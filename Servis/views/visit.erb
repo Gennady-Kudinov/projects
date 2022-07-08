@@ -13,84 +13,85 @@ $('#datetimepicker').datetimepicker();
 
 <form action="/visit" method="POST" role="form">
 
-<div class="p-3 mb-2 bg-warning text-dark">
-
-  <div class="form-group">
-    <label>Ваше имя</label>
-    <input name="username" type="text" class="form-control" placeholder="Ваше имя" value="<%=@username%>">
-  </div>
-
-  <div class="form-group">
-    <label>Ваш телефон</label>
-    <input name="phone" type="text" class="form-control" placeholder="Ваш телефон" value="<%=@phone%>">
-  </div>
-
-
-  <div class="col-md-3 position-relative">
-    <label for="exampleDataList" class="form-label">Выберите марку а/м</label>
-    <input name="modelauto" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Марка а/м..." value="<%=@modelauto%>">
-    <datalist id="datalistOptions">
-      <option value="AUDI">
-      <option value="ACURA">
-      <option value="BMW">
-      <option value="CHERY">
-      <option value="CITROEN">
-      <option value="DAEWOO">
-      <option value="DODGE">
-      <option value="DAIHATSU">
-      <option value="DATSUN">
-      <option value="FORD">
-      <option value="INFINITI">
-      <option value="GAZ">
-      <option value="GEELY">
-      <option value="GENESIS">
-      <option value="GREAT WALL">
-      <option value="HAVAL">
-      <option value="HONDA">
-      <option value="HYUNDAI">
-      <option value="KIA">
-      <option value="LEXUS">
-      <option value="LIFAN">
-      <option value="MAZDA">
-      <option value="MINI">
-      <option value="MITSUBISHI">
-      <option value="NISSAN">
-      <option value="OPEL">
-      <option value="PEUGEOT">
-      <option value="RAVON">
-      <option value="RENAULT">
-      <option value="ROVER">
-      <option value="SEAT">
-      <option value="SKODA">
-      <option value="SSANGYONG">
-      <option value="SUZUKI">
-      <option value="TOYOTA">
-      <option value="UAZ">
-      <option value="VAZ">
-      <option value="VOLKSWAGEN">
-      <option value="ZAZ">
-    </datalist>
-    </div>
-
+  <div class="p-3 mb-2 bg-warning text-dark">
 
     <div class="col-md-3 position-relative">
-    <label>Введите Гос. номер а/м</label>
-    <input name="number_auto" type="text" class="form-control" placeholder="Гос. Номер а/м">
+      <label>Ваше имя</label>
+        <input name="username" type="text" class="form-control" placeholder="Ваше имя" value="<%=@username%>">
     </div>
 
-<div class="form-group">
-<label>Когда вас ждать?</label>
-    <div class='input-group date' id='datetimepicker1'>
-        <input name="date_time" type='text' class="form-control" id="servDate" placeholder="Введите дату и время" value="<%=@date_time%>"/>
-        <span class="input-group-addon">
-            <span class="glyphicon glyphicon-calendar"></span>
-        </span>
+    <div class="col-md-3 position-relative">
+      <label>Ваш телефон</label>
+        <input name="phone" type="text" class="form-control" placeholder="Ваш телефон" value="<%=@phone%>">
     </div>
-</div>
 
-<div class = "form-group col col-md-4 col-sm-4 col-12">
-<button type="submit" class="btn btn-primary"><< В в о д >></button>
-</div>
+    <div class="col-md-3 position-relative">
+      <label for="exampleDataList" class="form-label">Выберите марку а/м</label>
+        <input name="modelauto" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Марка а/м..." value="<%=@modelauto%>">
+          <datalist id="datalistOptions">
+            <option value="AUDI">
+            <option value="ACURA">
+            <option value="BMW">
+            <option value="CHERY">
+            <option value="CITROEN">
+            <option value="DAEWOO">
+            <option value="DODGE">
+            <option value="DAIHATSU">
+            <option value="DATSUN">
+            <option value="FORD">
+            <option value="INFINITI">
+            <option value="GAZ">
+            <option value="GEELY">
+            <option value="GENESIS">
+            <option value="GREAT WALL">
+            <option value="HAVAL">
+            <option value="HONDA">
+            <option value="HYUNDAI">
+            <option value="KIA">
+            <option value="LEXUS">
+            <option value="LIFAN">
+            <option value="MAZDA">
+            <option value="MINI">
+            <option value="MITSUBISHI">
+            <option value="NISSAN">
+            <option value="OPEL">
+            <option value="PEUGEOT">
+            <option value="RAVON">
+            <option value="RENAULT">
+            <option value="ROVER">
+            <option value="SEAT">
+            <option value="SKODA">
+            <option value="SSANGYONG">
+            <option value="SUZUKI">
+            <option value="TOYOTA">
+            <option value="UAZ">
+            <option value="VAZ">
+            <option value="VOLKSWAGEN">
+            <option value="ZAZ">
+          </datalist>
+      </div>
 
-<br><br>
+
+      <div class="col-md-3 position-relative">
+        <label>Введите Гос. номер а/м</label>
+          <input name="number_auto" type="text" class="form-control" placeholder="Гос. Номер а/м" value="<%=@number_auto%>">
+      </div>
+
+  <div class="form-group">
+    <label>Когда вас ждать?</label>
+        <div class='input-group date' id='datetimepicker1'>
+            <input name="date_time" type='text' class="form-control" id="servDate" placeholder="Введите дату и время" value="<%=@date_time%>"/>
+              <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+        </div>
+  </div>
+
+  </br>
+
+  <div class = "form-group col col-md-4 col-sm-4 col-12">
+    <button type="submit" class="btn btn-primary"><< В в о д >></button>
+  </div>
+
+  </br></br>
 </form>

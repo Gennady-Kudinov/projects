@@ -1,0 +1,35 @@
+<h4>Страница пользователя для автосервиса</h4>
+						
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Марка а/м</th>
+      <th>Модель а/м</th>
+      <th>Гос Номер а/м</th>
+      <th>Пробег</th>
+      <th>Идентификатор</th>
+      <th>Неисправность<th>
+      <th>Телефон</th>
+      <th>Время</th>
+    </tr>
+  </thead>
+
+    <tbody>
+
+      <% @results.each do |row| %>
+
+        <tr <%= "style='background-color: red; color: grey;'" if row == @results.first %>>
+          <td><%= row['Auto'] %></td>
+          <td><%= row['Modelauto'] %></td>
+          <td><%= row['Number_auto'] %></td>
+          <td><%= row['Km'] %></td>
+          <td><%= row['Ecu'] %></td>
+          <td><%= row['Deffect'] %></td>
+          <td><%= row['Phone'] %></td>
+          <td><%= row['Time'] %></td>
+        </tr>
+
+      <% end %>
+  </tbody>
+
+</table>
