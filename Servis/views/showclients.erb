@@ -10,7 +10,6 @@
       <th>Идентификатор</th>
       <th>Неисправность<th>
       <th>Телефон</th>
-      <th>Время</th>
     </tr>
   </thead>
 
@@ -18,18 +17,17 @@
 
       <% @results.each do |row| %>
 
-        <tr <%= "style='background-color: red; color: grey;'" if row == @results.first %>>
+        <tr <%= "style='background-color: green; color: grey;'" if row == @results.first %>>
           <td><%= row['Auto'] %></td>
-          <td><%= row['Modelauto'] %></td>
+          <td><%= row['Nodelauto'] %></td>
           <td><%= row['Number_auto'] %></td>
           <td><%= row['Km'] %></td>
           <td><%= row['Ecu'] %></td>
           <td><%= row['Deffect'] %></td>
-          <td><%= row['Phone'] %></td>
-          <td><%= row['Time'] %></td>
+          <td><%= row['phone'] %></td>
         </tr>
 
       <% end %>
-  </tbody>
+    </tbody>
 
 </table>

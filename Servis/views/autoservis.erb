@@ -1,106 +1,11 @@
-<h3>Учет ремонтируемых а/м в Автосервисе</h3>
-<h4><p>На этой странице ведется учет приехавших а/м</p></h4>
+<h4>Введите Логин и Пароль для продолжения работы</h4>
 
-  <form action="/client" method="POST" role="form">
-   
-  </br>
-
-    <div class="p-3 mb-2 bg-warning text-dark">
-
-    </br>
-
-      <div class="col-md-3 position-relative">
-        <label>Введите Гос. номер а/м</label>
-          <input name="number_auto" type="text" class="form-control" placeholder="Гос. Номер а/м" value="<%=@number_auto%>">
-      </div>
-
-      <div class="col-md-3 position-relative">
-        <label for="exampleDataList" class="form-label">Выберите марку а/м</label>
-          <input name="auto" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Марка а/м..." value="<%=@auto%>">
-           <datalist id="datalistOptions">
-              <option value="AUDI">
-              <option value="ACURA">
-              <option value="BMW">
-              <option value="CHERY">
-              <option value="CITROEN">
-              <option value="DAEWOO">
-              <option value="DODGE">
-              <option value="DAIHATSU">
-              <option value="DATSUN">
-              <option value="FORD">
-              <option value="INFINITI">
-              <option value="GAZ">
-              <option value="GEELY">
-              <option value="GENESIS">
-              <option value="GREAT WALL">
-              <option value="HAVAL">
-              <option value="HONDA">
-              <option value="HYUNDAI">
-              <option value="KIA">
-              <option value="LEXUS">
-              <option value="LIFAN">
-              <option value="MAZDA">
-              <option value="MINI">
-              <option value="MITSUBISHI">
-              <option value="NISSAN">
-              <option value="OPEL">
-              <option value="PEUGEOT">
-              <option value="RAVON">
-              <option value="RENAULT">
-              <option value="ROVER">
-              <option value="SEAT">
-              <option value="SKODA">
-              <option value="SSANGYONG">
-              <option value="SUZUKI">
-              <option value="TOYOTA">
-              <option value="UAZ">
-              <option value="VAZ">
-              <option value="VOLKSWAGEN">
-              <option value="ZAZ">
-            </datalist>
-      </div>
-
-      <div class="col-md-3 position-relative">
-        <label>Введите модель а/м</label>
-          <input name="modelauto" type="text" value="<%=@modelauto%>" class="form-control" placeholder="Модель а/м">
-      </div>
-
-      <div class="col-md-3 position-relative">
-        <label>Введите пробег а/м в км.</label>
-          <input name="km" type="text" class="form-control" placeholder="Пробег км." value="<%=@km%>">
-      </div>
-
-    
-      <div class="mb-3">
-        <label>Введите неисправности а/м на которые жалуется владелец</label>
-          <textarea name="deffect" value="<%=@deffect%>" class="form-control is-invalid" id="validationTextarea" placeholder="Введите данные о неисправности а/м и данные а/м" required></textarea>
-        <div class="invalid-feedback">
-        </div>
-      </div>
-  
-  </br>
-
-      <div class="col-md-3 position-relative">
-            <label>Запишите тип контроллера</label>
-            <input name="ecu" type="text" class="form-control" placeholder="Идентификатор софта, эбу, вин" value="<%=@ecu%>">
-      </div>
-
-      <div class="col-md-3 position-relative">
-        <label>Ваш телефон</label>
-          <input name="phone" type="text" class="form-control" placeholder="Ваш телефон" value="<%=@phone%>">
-      </div>
-
-      <div class="col-md-3 position-relative">
-            <label>Введите стоимость услуг</label>
-            <input name="price" type="text" class="form-control" placeholder="Цена или стоимость услуг" value="<%=@price%>">      
-      </div>
-
-    </br></br></br></br>    
+    <form action="/admin/autoservis" method="POST">
+      Login:<br> <input type="text" name="login"></br>
+      Password:<br> <input type="password" name="password"><br></br>
 
       <div class = "form-group col col-md-4 col-sm-4 col-12">
             <button type="submit" class="btn btn-primary"><< В в о д >></button>
       </div>
+    </form>
 
-    </br></br>
-
-</form>

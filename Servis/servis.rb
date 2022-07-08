@@ -1,7 +1,6 @@
 require 'SQlite3'
 require 'rubygems'
 require 'sinatra'
-require 'sinatra/reloader'
 
 def get_db
 	db = SQLite3::Database.new 'autoservis.db'
@@ -15,24 +14,24 @@ configure do
 		"Client"
 		(
 			"id" INTEGER PRIMARY KEY AUTOINCREMENT,
-			"Number_auto" TEXT,
-			"Auto" TEXT,
-			"Modelauto" TEXT,
-			"Km" INTEGER,
-			"Ecu" TEXT,
-			"Deffect" TEXT,
+			"number_auto" TEXT,
+			"auto" TEXT,
+			"modelauto" TEXT,
+			"km" INTEGER,
+			"ecu" TEXT,
+			"deffect" TEXT,
 			"price" TEXT,
-			"phone" INTEGER,
-			"Date_time" TEXT
+			"phone" TEXT,
+			"date_time" TEXT
 		);'
 	
 		db.execute 'CREATE TABLE IF NOT EXISTS "Users" (
 				"id" INTEGER PRIMARY KEY AUTOINCREMENT,
-				"Username" TEXT,
-				"Phone" TEXT,
-				"Modelauto" TEXT,
-				"Number_auto" TEXT,
-				"Date_time" TEXT
+				"username" TEXT,
+				"phone" TEXT,
+				"modelauto" TEXT,
+				"number_auto" TEXT,
+				"date_time" TEXT
 			);'
 		
 end
@@ -49,10 +48,6 @@ get '/visit' do
 	erb :visit
 end
 
-get '/client' do
-	erb :client
-end
-
 get '/showusers' do
 	db = get_db
 	@results = db.execute 'SELECT * FROM Users ORDER BY id DESC'
@@ -67,10 +62,22 @@ end
 
 get '/admin/autoservis' do
 	erb :autoservis
-  end
+end
 
 get '/contacts' do
 	erb :contacts
+end
+
+post '/admin/autoservis' do
+	@login = params[:login]
+	@password = params[:password]
+
+	if @login == '1' && @password == '1'
+        erb :base_creation
+   	
+		elsif @login == '2' && @password == '2'
+			erb :base_creation
+	   end
 end
 
 post '/visit' do
@@ -268,6 +275,7 @@ post '/visit' do
 			'seltos' => 'SELTOS',
 			'sorento' => 'SORENTO',
 			'соренто' => 'SORENTO',
+			'сосренто' => 'SORENTO',
 			'soul' => 'SOUL',
 			'соул' => 'SOUL',
 			'soulev' => 'SOUL EV',
@@ -429,9 +437,13 @@ post '/visit' do
 			'шнива' => 'ШЕВИ НИВА',
 			'шеви' => 'ШЕВИ НИВА',
 			'шевинива' => 'ШЕВИ НИВА',
+			'2107' => '2107',
+			'2111' => '2111',
 			'2114' => '2114',
 			'2115' => '2115',
 			'2109' => '2109',
+			'2110' => '2110',
+			'2112' => '2112',
 			'gazel' => 'GAZEL',
 			'газель' => 'GAZEL',
 			'приора' => 'PRIORA',
