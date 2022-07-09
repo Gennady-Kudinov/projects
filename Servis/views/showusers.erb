@@ -19,11 +19,11 @@
   <% @results.each do |row| %>
 
     <tr <%= "style='background-color: red; color: grey;'" if row == @results.first %>>
-      <td><%= row['username'] %></td>
-      <td><%= row['phone'] %></td>
-      <td><%= row['modelauto'] %></td>
-      <td><%= row['number_auto'] %></td>
-      <td><%= row['date_time'] %></td>
+      <td><%= row['Username'] %></td>
+      <td><%= row['Phone'] %></td>
+      <td><%= row['Modelauto'] %></td>
+      <td><%= row['Number_auto'] %></td>
+      <td><%= row['Date_time'] %></td>
     </tr>
 
 <% end %>
