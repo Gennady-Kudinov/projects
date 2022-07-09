@@ -1,13 +1,7 @@
 <h3>Учет ремонтируемых а/м в Автосервисе</h3>
 
-  <form action="/client" method="POST" role="form">
-   
-  </br>
-
-    <div class="p-3 mb-2 bg-warning text-dark">
-
-    </br>
-
+  <form action="/client" method="POST" role="form"></br>
+    <div class="p-3 mb-2 bg-warning text-dark"></br>
       <div class="col-md-3 position-relative">
         <label>Введите Гос. номер а/м</label>
           <input name="number_auto" type="text" class="form-control" placeholder="Гос. Номер а/м" value="<%=@number_auto%>">
@@ -20,6 +14,7 @@
               <option value="AUDI">
               <option value="ACURA">
               <option value="BMW">
+              <option value="CHEVROLET">
               <option value="CHERY">
               <option value="CITROEN">
               <option value="DAEWOO">
@@ -75,9 +70,7 @@
           <textarea name="deffect" value="<%=@deffect%>" class="form-control is-invalid" id="validationTextarea" placeholder="Введите данные о неисправности а/м и данные а/м" required></textarea>
         <div class="invalid-feedback">
         </div>
-      </div>
-  
-  </br>
+      </div></br>
 
       <div class="col-md-3 position-relative">
             <label>Запишите тип контроллера</label>
@@ -92,14 +85,25 @@
       <div class="col-md-3 position-relative">
             <label>Введите стоимость услуг</label>
             <input name="price" type="text" class="form-control" placeholder="Цена или стоимость услуг" value="<%=@price%>">      
-      </div>
-
-    </br></br></br></br>    
+      </div></br></br></br></br> 
 
       <div class = "form-group col col-md-4 col-sm-4 col-12">
             <button type="submit" class="btn btn-primary"><< В в о д >></button>
-      </div>
-
-    </br></br>
+      </div></br></br>
 
 </form>
+
+<br><div class="card mb-3" style="max-width: 540px;">
+<div class="row g-0">
+  <div class="col-md-4">
+    <img src="/img_1.jpg" class="img-fluid rounded-start" alt="...">
+  </div>
+  <div class="col-md-8">
+    <div class="card-body">
+      <h3 class="card-title">Геннадий</h3>
+      <h4 class="card-text">+7 910 942 2002</br>+7 930 899 1111</h4>
+      <h4 class="card-text">Адрес: г. Тула,</br>Центральный р-он, ул. Морозова 2 Б</h4>
+    </div>
+  </div>
+</div>
+</div></br>
