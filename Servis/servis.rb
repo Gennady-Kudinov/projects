@@ -1,15 +1,30 @@
 require 'SQlite3'
 require 'rubygems'
 require 'sinatra'
+require 'sinatra/reloader'
 
-def get_db
+def init_db
 	db = SQLite3::Database.new 'autoservis.db'
 	db.results_as_hash = true
 	return db
   end
 
+#		before Вызывается каждый раз при перезагрузки
+#		Любой страницы
+  before do
+#		Инициализация Базы данных
+	init_db
+  end
+
+#		CONFIGURE Вызывается каждый раз при конфигурации приложения:
+#		когда изменился код программы и перезагрузилась страница
 configure do
+
+#		Иницилизация Базы данных в Конфигуре
+	init_db
 	db = SQLite3::Database.new 'autoservis.db'
+
+#		Создает таблицу если она не существует
 	db.execute 'CREATE TABLE IF NOT EXISTS 
 		"Client"
 		(
@@ -22,7 +37,7 @@ configure do
 			"deffect" TEXT,
 			"price" TEXT,
 			"phone" TEXT,
-			"date_time" TEXT
+			"date_time" DATE
 		);'
 	
 		db.execute 'CREATE TABLE IF NOT EXISTS "Users" (
@@ -31,43 +46,52 @@ configure do
 				"phone" TEXT,
 				"modelauto" TEXT,
 				"number_auto" TEXT,
-				"date_time" TEXT
+				"date_time" DATE
 			);'
 		
 end
 
+#		(Браузер получает страницу с сервера)
 get '/' do
 	erb "Hello! <a href=\"https://github.com/Gennady-Kudinov?tab=packages\">Original</a> pattern has been modified for <a href=\"https://github.com/Gennady-Kudinov/\">Student</a>"	
 end
 
+#		(Браузер получает страницу с сервера)
 get '/about' do
 	erb :about
 end
 
+#		(Браузер получает страницу с сервера)
 get '/visit' do
 	erb :visit
 end
 
+#		(Браузер получает страницу с сервера)
 get '/showusers' do
-	db = get_db
+	db = init_db
 	@results = db.execute 'SELECT * FROM Users ORDER BY id DESC'
 	erb :showusers
 end
 
+#		(Браузер получает страницу с сервера)
 get '/showclients'do
-	db = get_db
+	db = init_db
 	@results = db.execute 'SELECT * FROM Client ORDER BY id DESC'
 	erb :showclients
 end
 
+#		(Браузер получает страницу с сервера)
 get '/admin/autoservis' do
 	erb :autoservis
 end
 
+#		(Браузер получает страницу с сервера)
 get '/contacts' do
 	erb :contacts
 end
 
+#		Обработчик Post - запроса /admin/autoservis
+#		(Браузер отправляет данные на сервер)
 post '/admin/autoservis' do
 	@login = params[:login]
 	@password = params[:password]
@@ -80,6 +104,8 @@ post '/admin/autoservis' do
 	   end
 end
 
+#		Обработчик Post - запроса /visit
+#		(Браузер отправляет данные на сервер)
 post '/visit' do
 
 	#		Хеш для ответа на не заполнение поля Визит		
@@ -89,20 +115,21 @@ post '/visit' do
 					:modelauto => 'Введите марку и модель а/м',
 					:number_auto => 'Введите Гос. номер а/м',
 					:date_time => 'Введите дату и время приезда' }
-	
+
+#		Получаем переменные из пост - запроса	
 			@username  	= params[:username]
 			@phone 		= params[:phone]
 			@modelauto  = params[:modelauto]
 			@number_auto = params[:number_auto]
 			@date_time 	= params[:date_time]
 	
-	#		Вывод сообщений из хеша в зависимости какое поле не заполнено!
+#		Вывод сообщений из хеша в зависимости какое поле не заполнено!
 			@error = hh_visit.select {|key,_| params[key] == ""}.values.join(", ")
 					if @error != ''
 						return erb :visit
 					end
 	
-					db = get_db
+					db = init_db
 					db.execute 'INSERT INTO
 						users
 						(
@@ -125,8 +152,10 @@ post '/visit' do
 			
 	end
 
+#		Обработчик Post - запроса /client
+#		(Браузер отправляет данные на сервер)
 		post '/client' do
-		
+
 		@time = Time.now
 
 #    Хеш с Моделями автомобилей, использовать как словарь
@@ -207,6 +236,10 @@ post '/visit' do
 			'elantra' => 'ELANTRA',
 			'элантра' => 'ELANTRA',
 			'equus' => 'EQUUS',
+			'tucson' => 'TUCSON',
+			'nercjy' => 'TUCSON',
+			'туксон' => 'TUCSON',
+			'егсыщт' => 'TUCSON',
 			'genesis' => 'GENESIS',
 			'генезис' => 'GENESIS',
 			'genesis coupe' => 'GENESIS COUPE',
@@ -509,6 +542,7 @@ post '/visit' do
 		:km => 'Запишите пробег в км'
 	}
 
+	#		Получаем переменные из пост - запроса	
 		@auto			= params[:auto]
 		@modelauto	 	= params[:modelauto]
 		@number_auto 	= params[:number_auto]
@@ -527,7 +561,7 @@ post '/visit' do
 			return erb :client
 		end
 
-		db = get_db
+		db = init_db
 		db.execute 'INSERT INTO
 			client
 			(

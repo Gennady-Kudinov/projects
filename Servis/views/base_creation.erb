@@ -22,8 +22,8 @@
               <option value="DAIHATSU">
               <option value="DATSUN">
               <option value="FORD">
+              <option value="FIAT">
               <option value="INFINITI">
-              <option value="GAZ">
               <option value="GEELY">
               <option value="GENESIS">
               <option value="GREAT WALL">
@@ -47,10 +47,11 @@
               <option value="SSANGYONG">
               <option value="SUZUKI">
               <option value="TOYOTA">
+              <option value="VOLKSWAGEN">
               <option value="UAZ">
               <option value="VAZ">
-              <option value="VOLKSWAGEN">
               <option value="ZAZ">
+              <option value="GAZ">
             </datalist>
       </div>
 
@@ -62,19 +63,16 @@
       <div class="col-md-3 position-relative">
         <label>Введите пробег а/м в км.</label>
           <input name="km" type="text" class="form-control" placeholder="Пробег км." value="<%=@km%>">
-      </div>
+      </div><br><br></br>
 
-    
-      <div class="mb-3">
-        <label>Введите неисправности а/м на которые жалуется владелец</label>
-          <textarea name="deffect" value="<%=@deffect%>" class="form-control is-invalid" id="validationTextarea" placeholder="Введите данные о неисправности а/м и данные а/м" required></textarea>
-        <div class="invalid-feedback">
-        </div>
+      <br><div class="mb-3">
+        <label name="deffect" for="exampleFormControlTextarea1" class="form-label">Введите неисправности а/м на которые жалуется владелец </label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" style="width: 600px" placeholder="заполните данные о состоянии а/м"></textarea>
       </div></br>
 
-      <div class="col-md-3 position-relative">
-            <label>Запишите тип контроллера</label>
-            <input name="ecu" type="text" class="form-control" placeholder="Идентификатор софта, эбу, вин" value="<%=@ecu%>">
+      <div class="col-md-3 position-relative" style="width: 200px">
+            <label>HW: ID, SW: ID, ECI: ID</label>
+            <input name="ecu" type="text" class="form-control" placeholder="SW ID, HW ECU, эбу, вин" value="<%=@ecu%>">
       </div>
 
       <div class="col-md-3 position-relative">
@@ -82,9 +80,9 @@
           <input name="phone" type="text" class="form-control" placeholder="Ваш телефон" value="<%=@phone%>">
       </div>
 
-      <div class="col-md-3 position-relative">
-            <label>Введите стоимость услуг</label>
-            <input name="price" type="text" class="form-control" placeholder="Цена или стоимость услуг" value="<%=@price%>">      
+      <div class="col-md-3 position-relative" style="width: 150px"> 
+            <label>Цена услуг</label>
+            <input name="price" type="text" class="form-control" placeholder="Цена услуг" value="<%=@price%>">      
       </div></br></br></br></br> 
 
       <div class = "form-group col col-md-4 col-sm-4 col-12">

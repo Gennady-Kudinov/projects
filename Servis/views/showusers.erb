@@ -9,17 +9,14 @@
       <th>Номер а/м</th>
       <th>Дата и время</th>
     </tr>
-  </thead>
-
-  </br>
-  </br>
+  </thead></br></br>
 
   <body>
 
   <% @results.each do |row| %>
 
     <tr <%= "style='background-color: red; color: grey;'" if row == @results.first %>>
-      <td><%= row['Username'] %></td>
+      <td><%= row['username'] %></td>
       <td><%= row['Phone'] %></td>
       <td><%= row['Modelauto'] %></td>
       <td><%= row['Number_auto'] %></td>

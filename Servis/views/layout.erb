@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html>
 	<head>
+
 		<title>Автосервис на Морозова 2 б.</title>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<!-- Bootstrap -->
-				<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    			<script src="/vendor/jquery-1.9.1.min.js"></script>
+							<!-- Bootstrap -->
+
+				<link href="/vendor/css/bootstrap.min.css" rel="stylesheet">
+				<script src="/vendor/js/bootstrap.min.js"></script>
+
+			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    			<script src="/vendor/jquery-1.9.1.min.js"></script> 
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
-   				<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
-				
+   				
+						<!--   datetimepicker   -->		
 
-
-<script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
 <!-- Moment JS -->
-<script type="text/javascript" src="//momentjs.com/downloads/moment.js"></script>
-<!--Bootstrap JS -->
-<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<!-- <script type="text/javascript" src="//momentjs.com/downloads/moment.js"></script> -->
+<!-- Bootstrap JS -->
+<!-- <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script> -->
 <!-- dateTimePicker JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 <!-- bootstrap  -->
@@ -29,9 +31,6 @@
 $(function() {$('#datetimepicker1').datetimepicker();});
 
 </script>
-
-
-
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -67,18 +66,16 @@ $(function() {$('#datetimepicker1').datetimepicker();});
 			  	</div><!--/.nav-collapse -->
 			</nav>
 
-			<div>
-			      <%if @error then %>
-			          <div class="alert alert-danger"><%=@error%></div>
-			      <% end %>
+					<div>
+						<%if @error then %>
+							<div class="alert alert-danger"><%=@error%></div>
+						<% end %>
 
-			      <%= yield %>
-			</div>
+						<%= yield %>
+					</div>
 
-	</div>
+		</div>
 	
-  </body></br>
-
-<img src="/location.jpg" class="img-fluid rounded-start" alt="...">
+  	</body></br>
 
 </html>
