@@ -1,4 +1,4 @@
-require 'SQlite3'
+require 'sqlite3'
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
