@@ -83,22 +83,17 @@
       <div class="col-md-3 position-relative" style="width: 150px"> 
             <label>Цена услуг</label>
             <input name="price" type="text" class="form-control" placeholder="Цена услуг" value="<%=@price%>">      
-      </div><br><br><br><br> 
+     </div><hr /><hr /><hr /><hr />
 
       <div class = "form-group col col-md-4 col-sm-4 col-12">
-            <button type="submit" class="btn btn-primary" style="width: 155px"><< В в о д >></button>
-      </div><br><br>
+            <button type="submit" class="btn btn-primary" style="width: 170px"><< В в о д >></button>
+      </div><hr /><hr />
 
 </form>
 
-<br><div class="card mb-3" style="max-width: 540px;">
-<div class="row g-0">
-  <div class="col-md-8">
-    <div class="card-body">
-      <h3 class="card-title">Геннадий</h3>
-      <h4 class="card-text">+7 910 942 2002<br>+7 930 899 1111</h4>
-      <h4 class="card-text">Адрес: г. Тула,<br>Центральный р-он, ул. Морозова 2 Б</h4>
-    </div>
-  </div>
-</div>
-</div><br>
+
+<form method="POST" action="/admin/showclients">
+<h4>Открыть таблицу клиентов</h4>
+  <a href="showclients"><button type="button">Список клиентов</button></a>
+ 
+</form>

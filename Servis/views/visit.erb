@@ -76,23 +76,21 @@ $('#datetimepicker').datetimepicker();
       <div class="col-md-3 position-relative">
         <label>Введите Гос. номер а/м</label>
           <input name="number_auto" type="text" class="form-control" placeholder="Гос. Номер а/м" value="<%=@number_auto%>">
-      </div>
+      </div><hr />
 
-  <div class="form-group">
+  <div class="col-md-3 position-relative">
     <label>Когда вас ждать?</label>
-        <div class='input-group date' id='datetimepicker1'>
+        <div class='input-group date' style="width: 220px" id='datetimepicker1'>
             <input name="date_time" type='text' class="form-control" id="servDate" placeholder="Введите дату и время" value="<%=@date_time%>"/>
               <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
               </span>
-        </div>
-  </div>
+  </div></div><br /><hr />
 
-  <br>
+ 
+      <div class = "form-group col col-md-4 col-sm-4 col-12">
+            <button type="submit" class="btn btn-primary" style="width: 200px"><< В в о д >></button>
+      </div><br><br><hr />
+       
 
-  <div class = "form-group col col-md-4 col-sm-4 col-12">
-    <button type="submit" class="btn btn-primary" style="width: 155px"><< В в о д >></button>
-  </div>
-
-  <br><br>
 </form>

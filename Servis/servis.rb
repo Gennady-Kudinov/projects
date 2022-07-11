@@ -74,7 +74,7 @@ get '/showusers' do
 end
 
 #		(Браузер получает страницу с сервера)
-get '/showclients'do
+get '/admin/showclients'do
 	db = init_db
 	@results = db.execute 'SELECT * FROM Client ORDER BY id DESC'
 	erb :showclients
