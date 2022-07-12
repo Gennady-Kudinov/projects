@@ -1,0 +1,117 @@
+<h3>Учет ремонтируемых а/м в Автосервисе</h3>
+
+  <form action="/admin/demidov" method="POST" role="form"><br>
+    <div class="p-3 mb-2 bg-warning text-dark"><br>
+      <div class="col-md-3 position-relative">
+        <label>Введите Гос. номер а/м</label>
+          <input name="number_auto" type="text" class="form-control" placeholder="Гос. Номер а/м (Обязательно)" value="<%=@number_auto%>">
+      </div>
+
+      <div class="col-md-3 position-relative">
+        <label for="exampleDataList" class="form-label">Выберите марку а/м</label>
+          <input name="auto" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Марка а/м...(Обязательно)" value="<%=@auto%>">
+           <datalist id="datalistOptions">
+           <option value="AUDI">
+           <option value="ACURA">
+           <option value="BMW">
+           <option value="BYD">
+           <option value="CHEVROLET">
+           <option value="CHERY">
+           <option value="CITROEN">
+           <option value="CHANGAN">
+           <option value="CHRYSLER">
+           <option value="DAEWOO">
+           <option value="DODGE">
+           <option value="DAIHATSU">
+           <option value="DATSUN">
+           <option value="DONGFENG">
+           <option value="FORD">
+           <option value="FIAT">
+           <option value="FAW">
+           <option value="FOTON">
+           <option value="INFINITI">
+           <option value="ISUZU">
+           <option value="JAC">
+           <option value="GEELY">
+           <option value="GENESIS">
+           <option value="GREAT WALL">
+           <option value="GAC">
+           <option value="HAVAL">
+           <option value="HONDA">
+           <option value="HYUNDAI">
+           <option value="HAIMA">
+           <option value="KIA">
+           <option value="LEXUS">
+           <option value="LIFAN">
+           <option value="MAZDA">
+           <option value="MINI">
+           <option value="MITSUBISHI">
+           <option value="MERCEDES-BENZ">
+           <option value="NISSAN">
+           <option value="OPEL">
+           <option value="PEUGEOT">
+           <option value="RAVON">
+           <option value="RENAULT">
+           <option value="ROVER">
+           <option value="SEAT">
+           <option value="SKODA">
+           <option value="SSANGYONG">
+           <option value="SUZUKI">
+           <option value="SUBARU">
+           <option value="SMART">
+           <option value="TOYOTA">
+           <option value="VOLKSWAGEN">
+           <option value="VOLVO">
+           <option value="UAZ">
+           <option value="VAZ">
+           <option value="ZAZ">
+           <option value="GAZ">
+            </datalist>
+      </div>
+
+      <div class="col-md-3 position-relative">
+        <label>Введите модель а/м</label>
+          <input name="modelauto" type="text" value="<%=@modelauto%>" class="form-control" placeholder="Модель а/м (Обязательно)">
+      </div>
+
+      <div class="col-md-3 position-relative">
+        <label>Введите пробег а/м в км.</label>
+          <input name="km" type="text" class="form-control" placeholder="Пробег км. (Обязательно)" value="<%=@km%>">
+      </div><br><br><br>
+
+<br />
+
+      <div class="mb-3 position-relative">
+        <label for="exampleFormControlTextarea1" class="form-label">Введите неисправности а/м на которые жалуется владелец (Можно оставить пустым)</label>
+        <textarea name="deffect" class="form-control" value="<%=@deffect%>" id="exampleFormControlTextarea1" rows="5" style="width: 600px" placeholder="Заполните данные о состоянии а/м. Это поле не обязательно для заполнения" ></textarea>
+      </div><br>
+
+
+
+      <div class="col-md-3 position-relative" style="width: 250px">
+            <label>Версия калибровок или софта</label>
+            <input name="ecu" type="text" class="form-control" placeholder="Обзательно заполнить" value="<%=@ecu%>">
+      </div>
+
+      <div class="col-md-3 position-relative" style="width: 160px">
+        <label>Ваш телефон</label>
+          <input name="phone" type="text" class="form-control" placeholder="Не обязательно" value="<%=@phone%>">
+      </div>
+
+      <div class="col-md-3 position-relative" style="width: 160px"> 
+            <label>Цена услуг</label>
+            <input name="price" type="text" class="form-control" placeholder="Не обязательно" value="<%=@price%>">      
+     </div><hr /><hr /><hr /><hr />
+
+      <div class = "form-group col col-md-4 col-sm-4 col-12">
+            <button type="submit" class="btn btn-primary" style="width: 170px"><< В в о д >></button>
+      </div><hr /><hr />
+
+</form>
+
+
+<form method="POST" action="/admin/demidov">
+<h4>Открыть таблицу клиентов</h4>
+  <a href="showdemidov"><button type="button">Список клиентов</button></a>
+ 
+</form>
