@@ -1528,7 +1528,7 @@ post '/admin/autoservis' do
 	
 			db = init_db
 			db.execute 'INSERT INTO
-				max
+				demidov
 				(
 					auto,
 					modelauto,
