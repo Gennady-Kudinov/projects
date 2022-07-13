@@ -25,7 +25,7 @@ configure do
 	db = SQLite3::Database.new 'autoservis.db'
 
 #		Создает таблицу если она не существует
-	db.execute 'CREATE TABLE IF NOT EXISTS 
+		db.execute 'CREATE TABLE IF NOT EXISTS 
 		"client"
 		(
 			"id" INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -43,13 +43,13 @@ configure do
 		db.execute 'CREATE TABLE IF NOT EXISTS
 		"users"
 		(
-				"id" INTEGER PRIMARY KEY AUTOINCREMENT,
-				"username" TEXT,
-				"phone" TEXT,
-				"modelauto" TEXT,
-				"number_auto" TEXT,
-				"date_time" DATE
-			);'
+			"id" INTEGER PRIMARY KEY AUTOINCREMENT,
+			"username" TEXT,
+			"phone" TEXT,
+			"modelauto" TEXT,
+			"number_auto" TEXT,
+			"date_time" DATE
+		);'
 
 		db.execute 	'CREATE TABLE IF NOT EXISTS
 		"max"
@@ -64,7 +64,7 @@ configure do
 			"price" TEXT,
 			"phone" TEXT,
 			"date_time" DATE
-			);'
+		);'
 
 		db.execute 	'CREATE TABLE IF NOT EXISTS
 		"demidov"
@@ -79,9 +79,30 @@ configure do
 			"price" TEXT,
 			"phone" TEXT,
 			"date_time" DATE
-			);'
-		
-end
+		);'
+
+		db.execute 	'CREATE TABLE IF NOT EXISTS
+		"chat"
+		(
+			"id"	INTEGER NOT NULL,
+			"firstname"	TEXT,
+			"lastname"	TEXT,
+			"login"	TEXT,
+			"password"	TEXT,
+			"email"	TEXT,
+			"date_time"	DATE,
+			PRIMARY KEY("id" AUTOINCREMENT)
+		)'
+
+		db.execute 'CREATE TABLE IF NOT EXISTS
+		"dictionary"
+		(
+			"id"	INTEGER NOT NULL,
+			"modelauto"	TEXT,
+			"synonyms"	TEXT,
+			PRIMARY KEY("id","synonyms")
+		)'
+		end
 
 #		(Браузер получает страницу с сервера)
 get '/' do
@@ -109,10 +130,9 @@ get '/showusers' do
 	erb :showusers
 end
 
-get '/admin/showusers' do
-	db = init_db
-	@results = db.execute 'SELECT * FROM users ORDER BY id DESC'
-	erb :showusers
+#		(Браузер получает страницу с сервера)
+get '/admin/autoservis' do
+	erb :base_creation
 end
 
 #		(Браузер получает страницу с сервера)
@@ -121,25 +141,6 @@ get '/showclients' do
 	@results = db.execute 'SELECT * FROM client ORDER BY id DESC'
 	erb :showclients
 end
-
-#		(Браузер получает страницу с сервера)
-get '/admin/showclients' do
-	db = init_db
-	@results = db.execute 'SELECT * FROM client ORDER BY id DESC'
-	erb :showclients
-end
-
-#		(Браузер получает страницу с сервера)
-get '/admin/autoservis' do
-	erb :base_creation
-end
-
-#		(Браузер получает страницу с сервера)
-#			get '/admin/max' do
-#			db = init_db
-#			@results = db.execute 'SELECT * FROM Max ORDER BY id DESC'
-#			erb :max
-#			end
 
 get '/showmax' do
 	db = init_db
@@ -153,12 +154,18 @@ get '/showdemidov' do
 	erb :showdemidov
 end
 
+get '/showchatfree' do
+	db = init_db
+	@results = db.execute 'SELECT * FROM chat ORDER BY id DESC'
+	erb :showchatfree
+end
+
 #		(Браузер получает страницу с сервера)
 get '/contacts' do
 	erb :contacts
 end
 
-		#		Обработчик Post - запроса /admin
+#		Обработчик Post - запроса /admin
 #		(Браузер отправляет данные на сервер)
 post '/admin' do
 
@@ -173,7 +180,12 @@ post '/admin' do
 
 			elsif @login == 'sergey' && @password == 'sergey'
 				erb :demidov
-			end
+
+				elsif @login == 'chat' && @password == 'chatfree'
+					erb :chat
+						else
+						erb "Введите другой Логин и Пароль или позвоните +7 910-942-2002: +7 930-899-1111" 
+	end
 end
 
 #		Обработчик Post - запроса /visit
@@ -1087,7 +1099,7 @@ post '/admin/autoservis' do
 	#		Вывод сообщений из хеша в зависимости какое поле не заполнено!
 			@error = hh_client.select {|key,_| params[key] == ""}.values.join(", ")
 			if @error != ''
-				return erb :base_creation
+				return erb :max
 			end
 	
 			db = init_db
@@ -1523,7 +1535,7 @@ post '/admin/autoservis' do
 	#		Вывод сообщений из хеша в зависимости какое поле не заполнено!
 			@error = hh_client.select {|key,_| params[key] == ""}.values.join(", ")
 			if @error != ''
-				return erb :base_creation
+				return erb :demidov
 			end
 	
 			db = init_db
@@ -1545,5 +1557,60 @@ post '/admin/autoservis' do
 				db.close
 #				Вывод на экран результата заполнения данных клиента		
 			erb "<body>#{@number_auto} #{@auto} #{@modelauto} #{@km}км: Сумма #{@price} Дата #{@time.strftime('%d %B %Y %H:%M')}<br />#{@deffect}</body>" 
+		
+	end
+
+
+
+
+
+
+
+
+
+	post '/admin/chatfree' do
+
+		@time = Time.now		
+	
+#		Хеш для ответа на не заполнение поля Визит		
+		hh_client = {
+			:firstname => 'Гос номер не записан',
+			:lastname => 'Запишите Гос. номер а/м',
+			:login => 'Выберите марку а/м',
+			:password => 'Вы не записали модель а/м',
+			:email => 'Запишите пробег в км',
+			:date_time => 'Напишите версию калибровок или софта'
+		}
+	
+#		Получаем переменные из пост - запроса	
+			@firstname		= params[:firstname]
+			@lastname	 	= params[:lastname]
+			@login			= params[:number_auto]
+			@password		= params[:password]
+			@email			= params[:email]
+			@date_time 		= params[:date_time]
+	
+#		Вывод сообщений из хеша в зависимости какое поле не заполнено!
+			@error = hh_client.select {|key,_| params[key] == ""}.values.join(", ")
+			if @error != ''
+				return erb :chat
+			end
+	
+			db = init_db
+			db.execute 'INSERT INTO
+				chat
+				(
+					firstname,
+					lastname,
+					login,
+					password,
+					email,
+					date_time
+				)
+				values (?, ?, ?, ?, ?, ?)', [@firstname, @lastname, @login, @password, @email, @time.strftime('%d %B %Y %H:%M')]
+		
+				db.close
+#				Вывод на экран результата заполнения данных клиента		
+			erb "<body>#{@firstname} #{@lastname} #{@login} #{@password} #{@email} Дата #{@time.strftime('%d %B %Y %H:%M')}</body>" 
 		
 	end

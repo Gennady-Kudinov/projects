@@ -1,0 +1,48 @@
+<h3>Учет ремонтируемых а/м для пользователей чата</h3>
+
+  <form action="/admin/chatfree" method="POST" role="form"><br>
+   
+    <div class="p-3 mb-2 bg-warning text-dark"><br>
+      <div class="col-md-3 position-relative">
+        <label>Имя</label>
+          <input name="firstname" type="text" class="form-control" placeholder="Имя" value="<%=@firstname%>">
+      </div>
+
+    <div class="p-3 mb-2 bg-warning text-dark"><br>
+      <div class="col-md-3 position-relative">
+        <label>Ник</label>
+          <input name="lastname" type="text" class="form-control" placeholder="Ник" value="<%=@lastname%>">
+      </div>
+      
+      <div class="col-md-3 position-relative">
+        <label>Логин</label>
+          <input name="login" type="text" value="<%=@login%>" class="form-control" placeholder="Логин">
+      </div>
+
+      <div class="col-md-3 position-relative">
+        <label>Пароль</label>
+          <input name="password" type="text" class="form-control" placeholder="Пароль" value="<%=@password%>">
+      </div><br><br><br>
+
+<br />
+
+    <div class="col-md-3 position-relative">
+        <label>Емайл</label>
+          <input name="email" type="text" class="form-control" placeholder="Емайл" value="<%=@email%>">
+      </div><br><br><br>
+
+       <hr /><hr /><hr /><hr />
+
+      <div class = "form-group col col-md-4 col-sm-4 col-12">
+            <button type="submit" class="btn btn-primary" style="width: 170px"><< В в о д >></button>
+      </div>
+      </form>
+      <hr /><hr />
+      <hr /><hr />
+
+    <form method="POST" action="/showchatfree">
+    <div class = "form-group col col-md-4 col-sm-4 col-12">
+        <h4>Таблица клиентов</h4>
+        <a href="showchatfree"><button style="width: 170px" type="button">Список клиентов</button></a>
+      </div>
+  </form>

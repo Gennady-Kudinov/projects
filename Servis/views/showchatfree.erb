@@ -1,0 +1,31 @@
+<h4>Страница для пользователей Чата</h4>
+						
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Имя/th>
+      <th>Ник</th>
+      <th>Логин</th>
+      <th>Пароль</th>
+      <th>Емайл</th>
+      <th>Время<th>
+    </tr>
+  </thead>
+
+    <tbody>
+
+      <% @results.each do |row| %>
+
+        <tr <%= "style='background-color: ; color: grey;'" if row == @results.first %>>
+          <td><%= row['firstname'] %></td>
+          <td><%= row['lastname'] %></td>
+          <td><%= row['login'] %></td>
+          <td><%= row['password'] %></td>
+          <td><%= row['email'] %></td>
+          <td><%= row['date_time'] %></td>
+        </tr>
+
+      <% end %>
+    </tbody>
+
+</table>
