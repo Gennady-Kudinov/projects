@@ -236,7 +236,9 @@ post '/visit' do
 			
 	end
 
-		#		Обработчик Post - запроса /admin/autoservis
+#=========================================================
+
+#		Обработчик Post - запроса /admin/autoservis
 #		(Браузер отправляет данные на сервер)
 post '/admin/autoservis' do
 
@@ -643,8 +645,13 @@ post '/admin/autoservis' do
 		@phone			= params[:phone]
 		@price			= params[:price]
 
-				@key_model = @modelauto		
-  				@modelauto = @hash_model[@key_model]
+				if @modelauto != @hash_model[@key_model]
+					@key_model = @modelauto     
+					@modelauto = @hash_model[@key_model]
+				end
+
+#		Решено добавить миграцию времени в переменную @deffect
+				@deffect << @time.strftime('%d %B %Y %H:%M')
 
 #		Вывод сообщений из хеша в зависимости какое поле не заполнено!
 		@error = hh_client.select {|key,_| params[key] == ""}.values.join(", ")
@@ -687,6 +694,8 @@ post '/admin/autoservis' do
 		erb "<body>#{@number_auto} #{@auto} #{@modelauto} #{@km}км: Сумма #{@price} Дата #{@time.strftime('%d %B %Y %H:%M')}<br />#{@deffect}</body>" 
 
 	end
+
+#============================================================
 
 	post '/admin/max' do
 
@@ -1093,8 +1102,10 @@ post '/admin/autoservis' do
 			@phone			= params[:phone]
 			@price			= params[:price]
 	
-					@key_model = @modelauto		
-					@modelauto = @hash_model[@key_model]
+						if @modelauto != @hash_model[@key_model]
+							@key_model = @modelauto     
+							@modelauto = @hash_model[@key_model]
+						end
 	
 	#		Вывод сообщений из хеша в зависимости какое поле не заполнено!
 			@error = hh_client.select {|key,_| params[key] == ""}.values.join(", ")
@@ -1123,6 +1134,8 @@ post '/admin/autoservis' do
 			erb "<body>#{@number_auto} #{@auto} #{@modelauto} #{@km}км: Сумма #{@price} Дата #{@time.strftime('%d %B %Y %H:%M')}<br />#{@deffect}</body>" 
 		
 	end
+
+#	==========================================================
 
 	post '/admin/demidov' do
 
@@ -1529,8 +1542,10 @@ post '/admin/autoservis' do
 			@phone			= params[:phone]
 			@price			= params[:price]
 	
-					@key_model = @modelauto		
-					@modelauto = @hash_model[@key_model]
+					if @modelauto != @hash_model[@key_model]
+						@key_model = @modelauto     
+						@modelauto = @hash_model[@key_model]
+					end
 	
 	#		Вывод сообщений из хеша в зависимости какое поле не заполнено!
 			@error = hh_client.select {|key,_| params[key] == ""}.values.join(", ")
@@ -1561,11 +1576,7 @@ post '/admin/autoservis' do
 	end
 
 
-
-
-
-
-
+	#=====================================================
 
 
 	post '/admin/chatfree' do
