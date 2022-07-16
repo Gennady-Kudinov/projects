@@ -1,0 +1,7 @@
+    <h2>Список парикмахеров:</h2>
+
+<ul>
+<% @client.each do |client| %>
+  <li><%= client.name %></li>
+<% end %>
+</ul>
