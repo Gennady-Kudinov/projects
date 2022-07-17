@@ -1,5 +1,3 @@
-require 'sinatra'
+require './servis'
 require 'sinatra/reloader'
-require 'sinatra/activerecord'
-
-set :database, { adapter: 'sqlite3', database: 'my_database.db' }
+require 'sinatra/activerecord/rake'
