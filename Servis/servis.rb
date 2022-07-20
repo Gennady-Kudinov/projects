@@ -1,43 +1,9 @@
 require 'sqlite3'
 require 'rubygems'
 require 'sinatra'
-require 'sinatra/reloader'
-require 'sinatra/activerecord'
+# require 'sinatra/activerecord'
 
-#   Происходит подключение базы данных sqlite3 barbershop.db (запомнить)
-set :database, {adapter: "sqlite3", database: "autoservis.db"}
-
-#   Далее надо создать класс который будет представлять нашу сущьность
-#   В нашем случает сущность это Клиент, парикмахер, Post сообщение текст,
-#   комментарии с текстом.
-class Client < ActiveRecord::Base     #   Client наследует методы ActiveRecord базовый класс Base
-end
-
-class Users < ActiveRecord::Base     #   Client наследует методы ActiveRecord базовый класс Base
-end
-
-class Max < ActiveRecord::Base     #   Client наследует методы ActiveRecord базовый класс Base
-end
-
-class Demidov < ActiveRecord::Base     #   Client наследует методы ActiveRecord базовый класс Base
-end
-
-class Chat < ActiveRecord::Base     #   Client наследует методы ActiveRecord базовый класс Base
-end
-
-class Dictionary < ActiveRecord::Base     #   Client наследует методы ActiveRecord базовый класс Base
-end
-
-#		Создадим вывод на страницу список наших парикмахеров:
-get '/' do
-	@client = Client.all
-	erb :index
-  end
-
-get '/' do
-  erb :index
-end
-
+#	set :database, "sqlite3:autoservis.db"
 
 def init_db
 	db = SQLite3::Database.new 'autoservis.db'
@@ -208,16 +174,16 @@ post '/admin' do
 	@login = params[:login]
 	@password = params[:password]
 
-	if @login == 'gena' && @password == '8101966'
+	if @login == '' && @password == ''
         erb :base_creation
    	
-		elsif @login == 'max' && @password == 'maxim'
+		elsif @login == '' && @password == ''
 			erb :max
 
-			elsif @login == 'sergey' && @password == 'sergey'
+			elsif @login == '' && @password == ''
 				erb :demidov
 
-				elsif @login == 'chat' && @password == 'chatfree'
+				elsif @login == '' && @password == ''
 					erb :chat
 						else
 						erb "Введите другой Логин и Пароль или позвоните +7 910-942-2002: +7 930-899-1111" 
@@ -275,25 +241,25 @@ post '/visit' do
 
 	get '/admin/search' do
 		erb :search
-	  end
-
-#==========================================================
-
-	post '/admin/search' do
-
-		#       Передача имени из файла search.erb в переменную @ecu
-			@ecu            = params[:ecu]
-
-		#       Метод поиска файла по идентификатору и вывод его адреса (полный путь в виде строки)
-			@sw_file = Dir.glob("/Users/gena/projects/servis/*.jpg")
-			@xx = File.open "/Users/gena/projects/Servis/IMG_1.jpg"
-		#       Метод добавления ключей каждому адресу найденого файла.
-			#@sw_file.each do |path|
-
-			#end
-			erb :search
-								
 	end
+
+	get '/admin/search' do
+		erb :search
+	end
+
+post '/admin/search' do
+
+			#		Передача имени из файла search.erb в переменную @ecu
+					@ecu = params[:ecu]
+
+			#		Метод поиска файла по идентификатору и вывод его адреса (полный путь в виде строки)
+					@sw_file = Dir.glob("D:/Damps/Baza/Chevrolet/Aveo/D42/1CAF_tun_e2.bin")
+					
+					erb :search
+					
+end
+
+
 
 #=========================================================
 
@@ -574,6 +540,10 @@ post '/admin/autoservis' do
 			'астран' => 'ASTRA H',
 			'исигния' => 'ISIGNIA',
 			'isignia' => 'ISIGNIA',
+			'mokka' => 'MOKKA',
+			'moka' => 'MOKKA',
+			'мокка' => 'MOKKA',
+			'мока' => 'MOKKA',
 			'x60' => 'X60',
 			'х60' => 'X60',
 			'tigo' => 'TIGO',
@@ -974,6 +944,7 @@ post '/admin/autoservis' do
 		'транспортер' => 'TRANSPORTER',
 		'xl1' => 'XL1',
 		'h2' => 'H2',
+		'н2' => 'H2',
 		'h3' => 'H3',
 		'h5' => 'H5',
 		'xtral' => 'XTRAL',
@@ -1108,6 +1079,8 @@ post '/admin/autoservis' do
 		'камри' => 'CAMRY',
 		'yaris' => 'YARIS',
 		'ярис' => 'YARIS',
+		'ландкрузер' =>	'LAND CRUISER',
+		'landcruzer' =>	'LAND CRUISER',
 		'авенсис' => 'AVENSIS',
 		'avensis' => 'AVENSIS',
 		'berlingo' => 'BERLINGO',
