@@ -3,6 +3,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th>№ Порядковый</th>
       <th>Марка а/м</th>
       <th>Модель а/м</th>
       <th>Гос Номер а/м</th>
@@ -17,6 +18,7 @@
       <% @results.each do |row| %>
 
         <tr <%= "style='background-color: ; color: grey;'" if row == @results.first %>>
+          <td><%= row['id'] %></td>
           <td><%= row['auto'] %></td>
           <td><%= row['modelauto'] %></td>
           <td><%= row['number_auto'] %></td>
